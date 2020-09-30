@@ -1,0 +1,2 @@
+# olanweb
+ projek ta yolan
