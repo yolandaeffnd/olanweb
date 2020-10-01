@@ -114,6 +114,7 @@ class PembelajaranController extends Controller
                              'total_alfa'=>($detail3->total_alfa-$detail3->total_alfa+$count4),
                              'total_juz'=>($detail3->total_juz-$detail3->total_juz+$jumlah),
                              'surat_selesai'=>$data->surat_selesai,
+                             'total_pertemuan'=>($detail->total_pertemuan-$detail->total_pertemuan+$count2+$count3+$count4),
                          ]);
                     
               
@@ -250,6 +251,7 @@ class PembelajaranController extends Controller
                              'total_alfa'=>($detail3->total_alfa-$detail3->total_alfa+$count4),
                              'total_juz'=>($detail3->total_juz-$detail3->total_juz+$jumlah),
                              'surat_selesai'=>$data->surat_selesai,
+                             'total_pertemuan'=>($detail->total_pertemuan-$detail->total_pertemuan+$count2+$count3+$count4),
                          ]);
                     
               

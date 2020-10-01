@@ -37,3 +37,4 @@ Route::resource('penempatan2','PenempatanController');
 Route::resource('halaqahsantri','HalaqahSantriController');
 Route::resource('pertemuan','PertemuanController');
 Route::resource('pembelajaran','PembelajaranController');
+Route::resource('pimpinan','PimpinanController');

@@ -112,6 +112,12 @@
                 <i class="icon-globe menu-icon"></i>
               </a>
             </li>
+              <li class="nav-item">
+              <a class="nav-link" href="{{route('pimpinan.index')}}">
+                <span class="menu-title">Pimpinan</span>
+                <i class="icon-globe menu-icon"></i>
+              </a>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
                 <span class="menu-title">Laporan</span>
