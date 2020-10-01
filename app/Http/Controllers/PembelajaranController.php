@@ -89,67 +89,57 @@ class PembelajaranController extends Controller
   $allp= Pembelajaran::where('id_santri',$data->id_santri)->get();
               foreach($allp as $b){
                 $detail2=Pembelajaran::find($b->id_pembelajaran);
-                     $detail2->where('id_pembelajaran', $data->id_pembelajaran);
-
-                        
-                        $count2 = Pembelajaran::where('kehadiran',$a)->count();
-                        $count3 = Pembelajaran::where('kehadiran',$d)->count();
-                        $count4 = Pembelajaran::where('kehadiran',$c)->count();
-                      
+                     $detail2->where('id_santri', $data->id_santri);
+                     if($detail2->kehadiran==$a)
+                     {
+                        $count2 = 1;
+                        $count3 = 0;
+                        $count4 = 0;
+                        $count5 = 1;
+                          
+                     }
+                     elseif($detail2->kehadiran==$d)
+                     {
+                        $count2 = 0;
+                        $count3 = 1;
+                        $count4 = 0;
+                        $count5 = 1;
+                     }
+                     elseif($detail2->kehadiran==$c)
+                     {
+                        $count2 = 0;
+                        $count3 = 0;
+                        $count4 = 1;
+                        $count5 = 1;
+                     }
+                    
+                       
                   
-
+                          $detail2->save();
+       
                
             }
-             $detail2->save();
-       
+           
 
 
              $alldetail3= Riwayat::where('id_santri',$data->id_santri)->get();
              foreach($alldetail3 as $d){
-                 $detail3=Riwayat::find($d->id_santri);
+                 $detail3=Riwayat::find($d->id_riwayat);
                    $detail3->where('id_santri', $data->id_santri)
                         ->update([
-                            'total_hadir'=>($detail3->total_hadir-$detail3->total_hadir+$count2),
-                             'total_sakit'=>($detail3->total_sakit-$detail3->total_sakit+$count3),
-                             'total_alfa'=>($detail3->total_alfa-$detail3->total_alfa+$count4),
+                            'total_hadir'=>($detail3->total_hadir+$count2),
+                             'total_sakit'=>($detail3->total_sakit+$count3),
+                             'total_alfa'=>($detail3->total_alfa+$count4),
                              'total_juz'=>($detail3->total_juz-$detail3->total_juz+$jumlah),
                              'surat_selesai'=>$data->surat_selesai,
-                             'total_pertemuan'=>($detail->total_pertemuan-$detail->total_pertemuan+$count2+$count3+$count4),
+                     'total_pertemuan'=>($detail3->total_pertemuan+$count5),
                          ]);
                     
               
                 $detail3->save();
             }
 
-        // $alldetail4= Riwayat::where('id_santri',$data->id_santri)->get();
-        //      foreach($alldetail4 as $d){
-        //          $detail4=Riwayat::find($d->id_santri);
-        //            $detail4->where('id_santri', $data->id_santri)
-        //                 ->update([
-                           
-        //                      'total_sakit'=>($detail4->total_sakit-$detail4->total_sakit+$count3),
-                            
-        //                  ]);
-                    
-              
-        //         $detail4->save();
-        //     }
-
-        // $alldetail5= Riwayat::where('id_santri',$data->id_santri)->get();
-        //      foreach($alldetail5 as $d){
-        //          $detail5=Riwayat::find($d->id_santri);
-        //            $detail5->where('id_santri', $data->id_santri)
-        //                 ->update([
-                           
-        //                      'total_alfa'=>($detail5->total_alfa-$detail5->total_alfa+$count4),
-        //                  ]);
-                    
-              
-        //         $detail5->save();
-        //     }
-       
-
-
+        
           
 
         return redirect('/pembelajaran')->with('sukses','data berhasil ditambahkan');
@@ -189,10 +179,7 @@ class PembelajaranController extends Controller
     {
         $data = \App\Pembelajaran::find($id);
 
-        $data->id_pertemuan = $request->input('id_pertemuan');
-        $data->id_pegawai = $request->input('id_pegawai');
-        $data->id_santri = $request->input('id_santri');
-        $data->tgl = $request->input('tgl');
+        
         $data->kehadiran = $request->input('kehadiran');
         $data->id_juz_mulai = $request->input('id_juz_mulai');
         $data->surat_mulai = $request->input('surat_mulai');
@@ -222,20 +209,18 @@ class PembelajaranController extends Controller
            $a ='hadir';
            $d ='sakit';
            $c ='alfa';
+           
           $jumlah = DB::table('h_pembelajaran')->where('id_santri',$data->id_santri)->sum('total_juz');
           $allp= Pembelajaran::where('id_santri',$data->id_santri)->get();
               foreach($allp as $b){
                 $detail2=Pembelajaran::find($b->id_pembelajaran);
-                     $detail2->where('id_pembelajaran', $data->id_pembelajaran);
+                     $detail2->where('id_santri', $data->id_santri);
 
                         
-                        $count2 = Pembelajaran::where('kehadiran',$a)->count();
-                        $count3 = Pembelajaran::where('kehadiran',$d)->count();
-                        $count4 = Pembelajaran::where('kehadiran',$c)->count();
-                      
-                  
-
-               
+                        $count2 = $detail2->where('kehadiran',$a)->where('id_santri',$data->id_santri)->count();
+                        $count3 = $detail2->where('kehadiran',$d)->where('id_santri',$data->id_santri)->count();
+                        $count4 = $detail2->where('kehadiran',$c)->where('id_santri',$data->id_santri)->count();
+                     
             }
              $detail2->save();
        
@@ -243,7 +228,7 @@ class PembelajaranController extends Controller
 
              $alldetail3= Riwayat::where('id_santri',$data->id_santri)->get();
              foreach($alldetail3 as $d){
-                 $detail3=Riwayat::find($d->id_santri);
+                 $detail3=Riwayat::find($d->id_riwayat);
                    $detail3->where('id_santri', $data->id_santri)
                         ->update([
                             'total_hadir'=>($detail3->total_hadir-$detail3->total_hadir+$count2),
@@ -251,7 +236,7 @@ class PembelajaranController extends Controller
                              'total_alfa'=>($detail3->total_alfa-$detail3->total_alfa+$count4),
                              'total_juz'=>($detail3->total_juz-$detail3->total_juz+$jumlah),
                              'surat_selesai'=>$data->surat_selesai,
-                             'total_pertemuan'=>($detail->total_pertemuan-$detail->total_pertemuan+$count2+$count3+$count4),
+                             'total_pertemuan'=>($detail3->total_pertemuan-$detail3->total_pertemuan+$count2+$count3+$count4),
                          ]);
                     
               

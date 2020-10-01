@@ -1,8 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Registrasi;
 use App\Periode2;
+use App\Santri;
+use App\Agenda;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -16,19 +17,43 @@ class PimpinanController extends Controller
     public function index()
     {
         $periode = \App\Periode2::all();
-        $Registrasi = \App\Registrasi::all();
+        $registrasi = \App\Registrasi::all();
         
         $kategori = [];
         $data = [];
 
-        foreach ($periode as $per) {
-            $kategori[] = $per->tahun_akademik;
-            // $data[] = $registrasi->priode->;
-        }
 
-         // dd($kategori);
+     
+            foreach ($periode as $per)
+            {
+              $kategori[] = $per->tahun_akademik;
+              $data[]= $registrasi->where('id_periode',$per->id_periode)->count('id_santri');   
+            }
+           
+           $santri = \App\Santri::all()->count();
+           $guru = \App\Guru::all()->count();
+           $tempat = \App\Tempat::all()->count();
 
-         return view('pimpinan.index',['kategori'=>$kategori]);
+           $a='perempuan';
+           $b='laki-laki';
+
+
+
+
+               $lk = Santri::where('jk',$b)->count();
+               $wa = Santri::where('jk',$a)->count();
+
+
+               $agenda= Agenda::orderBy('id_agenda','asc')->get();
+    
+    
+        // foreach ($periode as $per) {
+        //     $kategori[] = $per->tahun_akademik;
+        // }
+
+         // dd($data);
+
+         return view('pimpinan.index',['kategori'=>$kategori,'data'=>$data,'santri'=>$santri,'guru'=>$guru,'tempat'=>$tempat,'lk'=>$lk,'wa'=>$wa,'agenda'=>$agenda]);
     }
 
     /**

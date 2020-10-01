@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Registrasi;
@@ -154,23 +153,7 @@ class RegistrasiController extends Controller
 
           ]);
 
-            Riwayat::create([
-              'id_halaqah'=>null,
-              'bulan'=>null,
-              'id_santri'=>$data->id_santri,
-              'total_juz'=>null,
-              'surat_selesai'=>null,
-              'total_pertemuan'=>'0',
-              'total_hadir'=>'0',
-              'total_alfa'=>'0',
-              'total_sakit'=>'0',
-              'status_pembayaran'=>null,
-              'status_keaktifan'=>$data->status,
-              
-              
-
-          ]);
-         
+          
          
 
 

@@ -13160,4 +13160,8 @@ dl {
     .pagination .page-item .page-link {
       padding: 0.25rem 0.5rem; } }
 
+.scroll {
+    max-height: 400px;
+    overflow-y: auto;
+}
 /*# sourceMappingURL=style.css.map */

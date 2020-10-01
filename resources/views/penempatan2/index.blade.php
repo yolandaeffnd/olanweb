@@ -52,8 +52,12 @@
                          @else
                           <td>---</td>
                          @endif
-                         
-                        <td>{{$data->status}}</td>
+                      
+                        @if($data->status=='menunggu')
+                           <td><button class="btn btn-sm btn-rounded btn-danger">{{$data->status}}</button></td>
+                        @elseif($data->status=='ditempatkan')
+                         <td><button class="btn btn-sm btn-rounded btn-primary">{{$data->status}}</button></td>
+                        @endif
                          @if(!empty($data->tgl_mulai))
                          <td>{{$data->tgl_mulai}}</td>
                           @else

@@ -10,6 +10,7 @@ use App\HalaqahSantri;
 use App\Riwayat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Carbon;
 class PenempatanController extends Controller
 {
     /**
@@ -20,6 +21,38 @@ class PenempatanController extends Controller
     public function index()
     {
        $datas= \App\Penempatan::all();
+
+       // $b = \Carbon\Carbon::now();
+       //  $c = 'menunggu';
+       //  $x = [];
+       //  $y = [];
+
+       //  foreach ($datas as $data) {
+       //     $x[] = $data->id_santri;
+       //     $y[] = $data->tgl_mulai;
+       //  }
+
+
+       //  $i=0;
+       // foreach ($datas as $d)
+       // {
+       //    $detail2=Penempatan::where('id_santri',$x[$i]);
+       //     if($y[$i]<=$b)
+       //     {
+       //         $detail2->update([
+       //                'status' => 'terlaksana',
+       //         ]);
+            
+       //     }
+       //      $detail2->save();
+       //    $i++;
+           
+          
+            
+       // }
+
+       // dd($d);
+      
         return view('penempatan2.index', ['datas' => $datas]);
     }
 
@@ -104,7 +137,7 @@ class PenempatanController extends Controller
          $data->id_pembelajaran_periode = $request->input('id_pembelajaran_periode');
          // $data->tgl_regis = $request->input('tgl_regis');
          $data->tgl_mulai = $request->input('tgl_mulai');
-           if( $request->input('tgl_mulai')!=null)
+           if( $request->input('tgl_mulai')==null)
             {
                  $data->status ='ditempatkan';
                  
@@ -117,7 +150,18 @@ class PenempatanController extends Controller
             }
             else{
 
-                 $data->status ='menunggu';   
+            $alldetail4= HalaqahSantri::where('id_santri',$data->id_santri)->get();
+             foreach($alldetail4 as $c){
+                 $detail4=HalaqahSantri::find($c->id_halaqah_santri);
+                   $detail4->where('id_santri', $data->id_santri)
+                        ->update([
+                            'id_halaqah'=>$data->id_halaqah,
+                         ]);
+                    
+              
+                $detail4->save();
+            }
+                 
             }
                      
         $data->update();

@@ -34,7 +34,7 @@
       
       <div class="form-group">
           <label for="exampleInputEmail1">Tanggal</label>
-          <input id="tgl" type="date" class="form-control" name="tgl" value="" value="{{$data->tgl}}" readonly="true">
+          <input id="tgl" type="date" class="form-control" name="tgl" value="{{$data->tgl}}" readonly="true">
     </div>
  
 

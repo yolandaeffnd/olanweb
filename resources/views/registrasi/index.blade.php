@@ -60,7 +60,11 @@
                              @if(!empty($data->jadwal->id_jadwal))
                            <td>{{$data->jadwal->kode_jadwal}}</td>
                            @endif
-                          <td>{{$data->status}}</td>
+                          @if($data->status=='aktif')
+                           <td><button class="btn btn-sm btn-rounded btn-success">{{$data->status}}</button></td>
+                        @elseif($data->status=='ditempatkan')
+                         <td><button class="btn btn-sm btn-rounded btn-danger">{{$data->status}}</button></td>
+                        @endif
                     <!--       <td>{{$data->status_pembayaran}}</td>
                           <td>{{$data->jumlah_pembayaran}}</td>
                           <td>{{$data->tgl_pembayaran}}</td> -->
@@ -86,7 +90,7 @@
 
                              <form action="{{route('registrasi.destroy', $data)}}" method="post"> 
             <a href="{{route('registrasi.edit', $data)}}" class="btn btn-primary btn-xs"><i class="fa  icon-pencil"></i></a>   
-             <a href="{{route('registrasi.show', $data)}}" class="btn btn-warning btn-xs"><i class="fa   icon-magnifier"></i></a>   
+            
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-sm btn-danger btn-xs" onclick="return confirm('Anda yakin ingin menghapus data ini?')"><i class="fa icon-trash"></i></button></form>  

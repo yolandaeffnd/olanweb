@@ -35,6 +35,12 @@
               </a>
             </li>
              <li class="nav-item">
+              <a class="nav-link" href="{{route('agenda.index')}}">
+                <span class="menu-title">Agenda</span>
+                <i class="icon-globe menu-icon"></i>
+              </a>
+            </li>
+             <li class="nav-item">
               <a class="nav-link" href="{{route('halaqahsantri.index')}}">
                 <span class="menu-title">Halaqah Santri</span>
                 <i class="icon-globe menu-icon"></i>

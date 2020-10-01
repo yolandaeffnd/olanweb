@@ -16,13 +16,11 @@
                       <th>NIS</th>
                       <th>HALAQAH</th>
                       <th>PEMBELAJARAN PERIODE</th>
-                      <th>STATUS</th>
+                      
                       <th>TGL REGISTRASI</th>
                       <th>TGL BERLAKU</th>
+                      <th>STATUS</th>
                       <th>STATUS REGISTRASI</th>
-                      
-                         
-      
                       <th>Aksi</th>
                       
                       
@@ -35,7 +33,8 @@
 
                       <tbody>
                         <?php $i=0;
-                        $datas = \App\Penempatan::all(); ?>
+                        $datas = \App\Penempatan::all(); 
+                         $b = Carbon\Carbon::today(); ?>
                         @foreach($datas as $data)
                         <tr>
                           <td><b>{{++$i}}.</b></td>
@@ -56,9 +55,14 @@
                          @else
                          <td> </td>
                          @endif
-                         <td>{{$data->status}}</td>
+                      
                          <td>{{$data->tgl_regis}}</td>
                          <td>{{$data->tgl_mulai}}</td>
+                        @if($data->tgl_mulai>$b)
+                          <td>terlaksana</td>
+                        @else
+                           <td>{{$data->status}}</td>
+                        @endif
                          <td>{{$data->status_registrasi}}</td>
 
                           
