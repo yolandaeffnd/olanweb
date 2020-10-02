@@ -20,38 +20,14 @@ class PenempatanController extends Controller
      */
     public function index()
     {
-       $datas= \App\Penempatan::all();
+       // $datas= \App\Penempatan::all();
 
-       // $b = \Carbon\Carbon::now();
-       //  $c = 'menunggu';
-       //  $x = [];
-       //  $y = [];
+       $b = \Carbon\Carbon::today();
 
-       //  foreach ($datas as $data) {
-       //     $x[] = $data->id_santri;
-       //     $y[] = $data->tgl_mulai;
-       //  }
+       $datas = DB::table('h_penempatan_santri')->where('tgl_mulai',$b)->update(['status'=>'terlaksana']);
 
 
-       //  $i=0;
-       // foreach ($datas as $d)
-       // {
-       //    $detail2=Penempatan::where('id_santri',$x[$i]);
-       //     if($y[$i]<=$b)
-       //     {
-       //         $detail2->update([
-       //                'status' => 'terlaksana',
-       //         ]);
-            
-       //     }
-       //      $detail2->save();
-       //    $i++;
-           
-          
-            
-       // }
-
-       // dd($d);
+     
       
         return view('penempatan2.index', ['datas' => $datas]);
     }
@@ -137,7 +113,7 @@ class PenempatanController extends Controller
          $data->id_pembelajaran_periode = $request->input('id_pembelajaran_periode');
          // $data->tgl_regis = $request->input('tgl_regis');
          $data->tgl_mulai = $request->input('tgl_mulai');
-           if( $request->input('tgl_mulai')==null)
+           if( $request->input('tgl_mulai')!==null&&$data->status=='menunggu')
             {
                  $data->status ='ditempatkan';
                  

@@ -4,7 +4,7 @@
 <div class="card">
                   <div class="card-header">
                     <h4 class="card-title">DATA PERIODE</h4>
-                <button data-toggle="modal" data-target="#staticBackdrop" class="btn btn pull-right btn-success"><i class="fa fa-plus"></i>  Tambah Data </a></button>
+                <button data-toggle="modal" data-target="#staticBackdrop" class="btn ml-lg-auto download-button btn-success btn-sm my-1 my-sm-0"><i class="fa fa-plus"></i>  Tambah Data </a></button>
               </div>
 
                 <div class="card-body">

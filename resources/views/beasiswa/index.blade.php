@@ -4,10 +4,10 @@
 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">DATA BEASISWA</h4>
-                <button data-toggle="modal" data-target="#staticBackdrop" class="btn btn pull-right btn-success"><i class="fa fa-plus"></i>  Tambah Data </a></button>
+                <button data-toggle="modal" data-target="#staticBackdrop" class="btn ml-lg-auto download-button btn-success btn-sm my-1 my-sm-0"><i class="fa fa-plus"></i>  Tambah Data </a></button>
               </div>
     <div class="card-body">
-    <table class="table table-striped table-dark table-bordered" id="datatables">    
+    <table class="table table-striped table-bordered" id="datatables">    
             
                     <thead>
                     <tr>      
@@ -47,6 +47,11 @@
                            <td>{{$data->bulan_berlaku}}</td>
                           <td>{{$data->id_periode}}</td>
                           <td>{{$data->status_beasiswa}}</td>
+                          @if($data->status_beasiswa=='aktif')
+                           <td><button class="btn btn-sm btn-rounded btn-primary">{{$data->status}}</button></td>
+                        @elseif($data->status_beasiswa=='tidak_aktif')
+                         <td><button class="btn btn-sm btn-rounded btn-danger">nonaktif</button></td>
+                         @endif
                           
                         <!--   <td>{{$data->pendidikan}}</td>
                           <td>{{$data->kelas}}</td>
