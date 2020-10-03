@@ -55,7 +55,7 @@ $(document).ready(function(){
 
                     <!--=====================================================================================================================================TAMBAH DATA SANTRI===================-->
 
- <form method="POST" action="{{ route('pembelajaran.store') }}">
+ <form method="POST" action="{{route('pembelajaran.store')}}">
           @csrf
       <div class="form-group">
           <label  for="exampleInputEmail1">Pertemuan</label>

@@ -18,6 +18,9 @@ class BeasiswaController extends Controller
     public function index()
     {
         $datas= \App\Beasiswa::all();
+
+       
+       
         return view('beasiswa.index', ['datas' => $datas]);
     }
 

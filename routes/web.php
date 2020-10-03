@@ -40,3 +40,7 @@ Route::resource('pembelajaran','PembelajaranController');
 Route::resource('pimpinan','PimpinanController');
 Route::resource('agenda','AgendaController');
 Route::get('/laporan/registrasi', 'LaporanController@registrasi');
+Route::get('/laporan/registrasi_view', 'LaporanController@registrasi_view');
+Route::get('/laporan/registrasi_view/pdf', 'LaporanController@registrasi_pdf');
+
+

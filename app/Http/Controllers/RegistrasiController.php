@@ -212,8 +212,8 @@ class RegistrasiController extends Controller
           // $data->id_jadwal = $request->input('id_jadwal');
            $data->status = $request->input('status');
            $data->status_pembayaran = $request->input('status_pembayaran');
-             $data->jumlah_pembayaran = $request->input('jumlah_pembayaran');
-               $data->tgl_pembayaran = $request->input('tgl_pembayaran');
+            $data->jumlah_pembayaran = $request->input('jumlah_pembayaran');
+           $data->tgl_pembayaran = $request->input('tgl_pembayaran');
 
    
         $data->update();

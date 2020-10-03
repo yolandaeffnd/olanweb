@@ -62,7 +62,7 @@
                            @endif
                           @if($data->status=='aktif')
                            <td><button class="btn btn-sm btn-rounded btn-success">{{$data->status}}</button></td>
-                        @elseif($data->status=='ditempatkan')
+                        @else
                          <td><button class="btn btn-sm btn-rounded btn-danger">{{$data->status}}</button></td>
                         @endif
                     <!--       <td>{{$data->status_pembayaran}}</td>

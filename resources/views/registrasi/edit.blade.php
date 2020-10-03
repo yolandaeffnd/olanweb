@@ -102,6 +102,22 @@ $(document).ready(function(){
           <label for="exampleInputEmail1">Tanggal Pembayaran</label>
           <input id="tgl_pembayaran" type="date" class="form-control" name="tgl_pembayaran" value="{{$data->tgl_pembayaran}}" required>
     </div>
+
+     <div class="form-group row">
+                            <label class="col-sm-3 col-form-label"> Status</label>
+                            <div class="col-sm-4">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input type="radio" class="form-check-input" name="status" id="status" value="bayar" {{$data->status === "aktif" ? "checked" : ""}} > Aktif <i class="input-helper"></i></label>
+                              </div>
+                            </div>
+                            <div class="col-sm-5">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input type="radio" class="form-check-input" name="status" id="status" value="tidak aktif" {{$data->status === "tida aktif" ? "checked" : ""}}> Tidak Aktif <i class="input-helper"></i></label>
+                              </div>
+                            </div>
+                          </div>
   </section>
 
 

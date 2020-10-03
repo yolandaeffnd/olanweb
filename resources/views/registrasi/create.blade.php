@@ -205,7 +205,7 @@ $(document).ready(function(){
             <input name="jespem" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="jenis pembelajaran" >
     </div> -->
 
-  <div class="form-group row">
+  <!-- <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Jenis Pembelajaran</label>
                             <div class="col-sm-4">
                               <div class="form-check">
@@ -220,7 +220,7 @@ $(document).ready(function(){
                               </div>
                             </div>
                           </div>
-
+ -->
 
     <div class="form-group">
           <label for="exampleInputEmail1">Nama Ayah</label>

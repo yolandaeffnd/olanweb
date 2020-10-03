@@ -16,7 +16,8 @@ class SantriController extends Controller
     public function index()
     {
         $datas= Santri::orderBy('id_santri','asc')->get();
-        return view('santri.index', compact('datas'));
+
+         return view('santri.index', compact('datas'));
     }
 
     /**

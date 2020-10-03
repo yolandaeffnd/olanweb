@@ -16,9 +16,19 @@
         {{ csrf_field() }}
 
   <div class="row">
-    <div class="form-group col-md-6">
+     <div class="form-group col-md-6">
           <label for="exampleInputEmail1">Tahun</label>
-            <input name="tahun" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="tahun">
+           <select name="input_tahun" class="form-control">
+          <option value="" disabled selected>-Pilih Tahun-</option>
+          <?php
+            $thn_skr = date('Y');
+            for ($i = $thn_skr; $i >= 2015; $i--) {
+              ?>
+                <option value="<?php echo $i ?>"><?php echo $i ?></option>
+                <?php
+            }
+          ?>
+        </select>
     </div>   
     <div class="form-group col-md-6">
           <label for="exampleInputEmail1">Bulan</label>
@@ -38,6 +48,7 @@
                 <option value="12">Desember</option>
             </select>
     </div>
+    
   </div>
 
     <div class="modal-footer">
@@ -58,6 +69,4 @@
 </form>
                   </div>
                 </div>
-
-
 @stop 
