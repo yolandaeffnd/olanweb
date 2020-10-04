@@ -26,7 +26,7 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
  -->
 
-  <link rel="stylesheet" href="{{asset('dataTables/DataTables-1.10.21/css/dataTables.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{asset('dataTables/DataTables-1.10.21/css/dataTables.bootstrap4.min.css')}}">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
 
   
@@ -36,9 +36,7 @@
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
-    @section('css')
-
-    @show
+   
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.png')}}" />
@@ -82,8 +80,9 @@
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_sidebar.html -->
-      @include('template.sidebar')
+     @include('backend.si_debar')
         <!-- partial -->
+        
        <div class="main-panel">
           <div class="content-wrapper">
             @yield('content')

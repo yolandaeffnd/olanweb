@@ -18,7 +18,7 @@ class HalaqahController extends Controller
     public function index()
     {
          $datas= \App\Halaqah::all();
-        return view('halaqah.index', ['datas' => $datas]);
+        return view('halaqah2.index', ['datas' => $datas]);
     }
 
     /**

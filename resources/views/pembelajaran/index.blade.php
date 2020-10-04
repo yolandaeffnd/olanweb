@@ -1,4 +1,4 @@
-@extends('template.app')
+@extends('backend.app')
 @section('content')
 <div class="card">
                   <div class="card-header">

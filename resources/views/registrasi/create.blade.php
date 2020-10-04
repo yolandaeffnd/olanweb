@@ -1,4 +1,4 @@
-@extends('template.app')
+@extends('backend.app')
 @section('js')
  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
  <script type="text/javascript">
@@ -61,7 +61,7 @@ $(document).ready(function(){
                           </div>
 
 
-                           <div class="form-group">
+   <div class="form-group">
           <label  for="exampleInputEmail1">Periode</label>
       <select name="id_periode" class="form-control">
         <option value="">Pilih Periode</option>

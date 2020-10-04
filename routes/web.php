@@ -42,5 +42,11 @@ Route::resource('agenda','AgendaController');
 Route::get('/laporan/registrasi', 'LaporanController@registrasi');
 Route::get('/laporan/registrasi_view', 'LaporanController@registrasi_view');
 Route::get('/laporan/registrasi_view/pdf', 'LaporanController@registrasi_pdf');
-
-
+Route::get('/laporan/santri_view', 'LaporanController@santri_view');
+Route::get('/laporan/santri_view/pdf', 'LaporanController@santri_pdf');
+Route::get('/laporan/pembayaran_view', 'LaporanController@pembayaran_view');
+Route::get('/laporan/pembayaran_view/pdf', 'LaporanController@pembayaran_pdf');
+Route::get('/laporan/halaqahsantri_view', 'LaporanController@halaqahsantri_view');
+Route::get('/laporan/halaqahsantri_view/pdf', 'LaporanController@halaqahsantri_pdf');
+Route::get('/laporan/dftunggu_view', 'LaporanController@dftunggu_view');
+Route::get('/laporan/dftunggu_view/pdf', 'LaporanController@dftunggu_pdf');

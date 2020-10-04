@@ -1,4 +1,4 @@
-@extends('template.app')
+@extends('backend.app')
 
  @section('content')
 <div class="card">
@@ -15,7 +15,7 @@
       <form method="" action="">
         @csrf
   <div class="row">
-     <div class="form-group col-md-6">
+     <div class="form-group col-md-4">
           <label for="exampleInputEmail1">Tahun</label>
           <select name="tahun" class="form-control" id="tahun">
           <option value="" disabled selected>-Pilih Tahun-</option>
@@ -30,7 +30,7 @@
           ?>
         </select>
     </div>   
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-4">
           <label for="exampleInputEmail1">Bulan</label>
             <select name="bulan" class="form-control" id="bulan">
                 <option value="">-Pilih Bulan-</option>
@@ -48,7 +48,7 @@
                 <option value="december">Desember</option>
             </select>
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-4">
           <label for="exampleInputEmail1">Status</label>
             <select name="status" class="form-control" id="status">
                 <option value="">semua</option>

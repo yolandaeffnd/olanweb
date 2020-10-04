@@ -33,59 +33,43 @@
   </table>
 
  <hr class="line-title">
-		 <center><p><span style="font-size: 22px;  font-weight: bold;">LAPORAN REGISTRASI SANTRI</span></p>
+		 <center><p><span style="font-size: 22px;  font-weight: bold;">LAPORAN HALAQAH SANTRI</span></p>
 		 </center><br><br>
          <table>
 <tr style="font-size: 18px; font-weight: bold">
-	<td>Tahun</td>
-	<td>: <?php echo $tahun;?></td>
+	<td>Halaqah</td>
+	<td>: <?php echo $halaqah; ?></td>
 </tr>
-<tr style="font-size: 18px; font-weight: bold">
-	<td>Bulan</td>
-	<td> : <?php echo $bulan;?></td>
-</tr>
-<tr style="font-size: 18px; font-weight: bold">
-	<td>Status</td>
-	<td> :<?php echo $status;?></td>
-</tr>
-<br>
+
+
 </table>
 <table style="width: 100%" border="1" border-collapse: collapse; borderspacing="0" cellpadding="2">
-              <thead>
+             <thead>
                     <tr>      
                       <th>NO</th>
-                      <th>TIPE</th>
-                      <th>KODE PERIODE</th>
-                     <th>TANGGAL</th>
-                      <th>NIS</th>
-                      <th>NAMA SANTRI</th>
-                      
-                         <th>JADWAL</th>
-                            
-                          
+                      <th>NIS SANTRI</th>
+                      <th>KODE HALAQAH</th>
+                     
                       
                     </tr>
                   </thead>
-          
-              <tbody>
-                                <?php $i=0;?>
-                                                  
-                      @foreach($datas as $data)
+                                   
+
+                   <!--    BAGIAN BODY TABEL -->
+
+
+                      <tbody>
+                        <?php $i=0; ?>
+                        @foreach($datas as $data)
                         <tr>
                           <td><b>{{++$i}}.</b></td>
-                          <td>{{$data->tipe}}</td>
-                       <!--    <td>{{$data->panggilan}}</td> -->
-    
-                         <td>{{$data->periode2->kode_periode}}</td>
-                          <td>{{$data->tgl}}</td>
-                          @if(!empty($data->santri->id_santri))
+                           @if(!empty($data->santri->id_santri))
                           <td>{{$data->santri->nis}}</td>
-                           <td>{{$data->santri->nama_santri}}</td>
-                           @endif
-                             @if(!empty($data->jadwal->id_jadwal))
-                           <td>{{$data->jadwal->kode_jadwal}}</td>
-                           @endif
-                        
+                          @endif
+                       <!--    <td>{{$data->panggilan}}</td> -->
+                           @if(!empty($data->halaqah->id_halaqah))
+                          <td>{{$data->halaqah->kode_halaqah}}</td>
+                          @endif
                           
                         </tr>
                         @endforeach
