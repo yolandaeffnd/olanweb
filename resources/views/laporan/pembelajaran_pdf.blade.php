@@ -34,34 +34,35 @@
   </table>
 
  <hr class="line-title">
-		 <center><p><span style="font-size: 22px;  font-weight: bold;">LAPORAN PEMBAYARAN SPP</span></p>
+		 <center><p><span style="font-size: 22px;  font-weight: bold;">DAFTAR PERKEMBANGAN PEMBELAJARAN</span></p>
 		 </center><br><br>
-         <table>
+         <table width="100%">
 <tr style="font-size: 18px; font-weight: bold">
-	<td>Tahun</td>
-	<td>: <?php echo $tahun;?></td>
-</tr>
-<tr style="font-size: 18px; font-weight: bold">
-	<td>Bulan</td>
-	<td> : <?php echo $bulan;?></td>
+<td width="20%">Nis / Nama</td><td>:</td><td width="50%"><?php echo  $nis?> / <?php echo $nama?></td>
 </tr>
 
+<tr style="font-size: 18px; font-weight: bold">
+@foreach($hqq as $h)
+<td width="10%">Guru</td><td>:</td><td>{{$h->namapengajar}}</td>
+<td width="10%">Halaqah</td><td>:</td><td>{{$h->kode_halaqah}}</td>
+@endforeach
+
+</tr>
 <br>
 </table>
 <table style="width: 100%" border="1" border-collapse: collapse; borderspacing="0" cellpadding="2">
-             <thead>
+           <thead>
                     <tr>      
                       <th>NO</th>
-                      <th>NIS</th>
-                       <th>PERIODE BERLAKU</th>
-                      <th>JUMLAH PEMBAYARAN</th>
-                      <th>BULAN</th>
-                      <th>TANGGAL PEMABAYARAN</th>
-                      <th>STATUS</th>
+                      <th>PERTEMUAN</th>
+                
+                     
+                      <th>TANGGAL</th>
+                      <th>JUZ MULAI</th>
+                      <th>JUZ SELESAI</th>
+                      <th>TOTAL JUZ</th>
                       
-                         
-      
-                  
+                      
                       
                       
                     </tr>
@@ -76,33 +77,42 @@
                         @foreach($datas as $data)
                         <tr>
                           <td><b>{{++$i}}.</b></td>
-                          @if(!empty($data->santri->id_santri))
-                          <td>{{$data->santri->nis}}</td>
-                          @endif
-                          @if(!empty($data->periode2->id_periode))
-                          <td>{{$data->periode2->kode_periode}}</td>
-                          @endif
-                          <td>{{$data->spp}}</td>
-                          <td>{{$data->bulan}}</td>
-                          <td>{{$data->tgl_pembayaran}}</td>
-                          <td>{{$data->status}}</td>
-                          
-
-                          
+                          <td>{{$data->id_pertemuan}}</t>
+                         
+                         <td>{{$data->tgl}}</td>
+                         <td>{{$data->id_juz_mulai}}</td>
+                         <td>{{$data->id_juz_selesai}}</td>
+                         <td>{{$data->total_juz}}</td>
                         
-                    
-
+                          
+                          
+                          
+                      
+                         
+                          
                         </tr>
                         @endforeach
                       </tbody>
-                           
   </table>
   <br><br>
  <table>
 		<tr style="font-size: 16px; font-weight: bold">
-				<td>Jumlah Pembayaran</td>
-				<td>: <?php echo $c1;?></td>
-		</tr>
+@foreach($c1 as $r)
+<td width="10%">Total Juz Keseluruhan</td><td>:</td><td>{{$r->total_juz}}</td>
+  </tr>
+  <tr style="font-size: 16px; font-weight: bold">
+<td width="10%">Total Pertemuan</td><td>:</td><td>{{$r->total_pertemuan}}</td>
+</tr>
+<tr style="font-size: 16px; font-weight: bold">
+<td width="10%">Total Hadir</td><td>:</td><td>{{$r->total_hadir}}</td>
+</tr>
+<tr style="font-size: 16px; font-weight: bold">
+<td width="10%">Total Sakit/Izin</td><td>:</td><td>{{$r->total_sakit}}</td>
+<tr style="font-size: 16px; font-weight: bold">
+<td width="10%">Total Alfa</td><td>:</td><td>{{$r->total_alfa}}</td>
+</tr>
+@endforeach
+		
 		<br><br><br><br>
  </table>
    <table style="font-weight: bold;" align="right">

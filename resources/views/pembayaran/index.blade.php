@@ -58,8 +58,11 @@
 
 
                              <form action="{{route('pembayaran.destroy', $data)}}" method="post"> 
-            <a href="{{route('pembayaran.edit', $data)}}" class="btn btn-primary btn-xs"><i class="fa  icon-pencil"></i></a>   
-             <a href="{{route('pembayaran.show', $data)}}" class="btn btn-warning btn-xs"><i class="fa   icon-magnifier"></i></a>   
+            
+             <a href="{{url('/pembayaran/index/pdf',$data)}}"  class="btn btn-warning btn-xs"><i class="fa   icon-printer" ></i></a> 
+            <!--  <button method="post" onclick="filterPdf()" type="button" class="btn btn-info btn-icon-text" id="id_pembayaran" name="id_pembayaran" value={{$data->id_pembayaran}}> PDF <i class="icon-printer btn-icon-append" ></i>
+                          </button> -->
+             <a href="{{route('pembayaran.edit', $data)}}" class="btn btn-primary btn-xs"><i class="fa  icon-pencil"></i></a>     
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-sm btn-danger btn-xs" onclick="return confirm('Anda yakin ingin menghapus data ini?')"><i class="fa icon-trash"></i></button></form>  
@@ -78,6 +81,12 @@
  
 @stop 
 @section('js')
+<script type="text/javascript">
+function filterPdf(){
+       let state=document.getElementById('id_pembayaran').value
+       window.location.href='pembayaran/index/pdf?id_pembayaran='+state
+    }
+</script>
 
 
 @endsection

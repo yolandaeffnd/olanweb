@@ -16,7 +16,8 @@
 		</style>
 </head>
 <body>
-<!-- <img src="{{asset('assets/images/simaq/tes.jpeg')}}" style="position: absolute; width: 100px; height: auto;"> -->
+<img src="{{public_path('assets/images/quran.jpg')}}" style="position: absolute; width: 100px; height: auto;">
+
 <table >
         <tr>
           <td align="center">
@@ -38,7 +39,7 @@
          <table>
 <tr style="font-size: 18px; font-weight: bold">
 	<td>Halaqah</td>
-	<td>: <?php echo $halaqah; ?></td>
+	<td>: <?php echo $hq; ?></td>
 </tr>
 
 
@@ -79,7 +80,7 @@
   <br><br>
  <table>
 		<tr style="font-size: 16px; font-weight: bold">
-				<td>Jumlah Registrasi</td>
+				<td>Jumlah Santri</td>
 				<td>: <?php echo $c1;?></td>
 		</tr>
 		<br><br><br><br>

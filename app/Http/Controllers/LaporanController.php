@@ -121,6 +121,9 @@ class LaporanController extends Controller
 			$status = $request->query('status');
 			$periode = $request->query('id_periode');
 			$jk = $request->query('jk');
+
+            $result = DB::table('h_periode')->select('tahun_akademik')->where('id_periode',$periode)->first();
+            $pr = $result->tahun_akademik;
        		 	
 
 			$a ='aktif';
@@ -152,7 +155,7 @@ class LaporanController extends Controller
         $today = Carbon::now()->format('d-m-Y');
         $c1=$datas->count();
 
-         $pdf= PDF::loadView('laporan.santri_pdf', array('datas'=>$datas,'periode'=>$periode,'today'=>$today,'c1'=>$c1,'jk'=>$jk))->setPaper('a4', 'landscape');
+         $pdf= PDF::loadView('laporan.santri_pdf', array('datas'=>$datas,'periode'=>$periode,'today'=>$today,'c1'=>$c1,'jk'=>$jk,'pr'=>$pr))->setPaper('a4', 'landscape');
         return $pdf->stream('laporan_santri_'.date('Y-m-d_H-i-s').'.pdf');
 	}
 
@@ -216,6 +219,9 @@ class LaporanController extends Controller
             $halaqah = $request->query('id_halaqah');
            
             $datas = HalaqahSantri::where('id_halaqah',$halaqah)->get();
+
+            $result = DB::table('h_halaqah')->select('kode_halaqah')->where('id_halaqah',$halaqah)->first();
+            $hq = $result->kode_halaqah;
            
         }
         else{
@@ -226,7 +232,7 @@ class LaporanController extends Controller
         $today = Carbon::now()->format('d-m-Y');
         $c1=$datas->count();
         
-         $pdf= PDF::loadView('laporan.halaqahsantri_pdf', array('datas'=>$datas,'today'=>$today,'c1'=>$c1,'halaqah'=>$halaqah)); 
+         $pdf= PDF::loadView('laporan.halaqahsantri_pdf', array('datas'=>$datas,'today'=>$today,'c1'=>$c1,'hq'=>$hq)); 
         return $pdf->stream('laporan_halaqahsantri_'.date('Y-m-d_H-i-s').'.pdf');
 	}
 
@@ -243,7 +249,7 @@ class LaporanController extends Controller
             $datas = Penempatan::all();
            
         }
-          return view('laporan.dftunggu',array('datas'=>$datas));;
+          return view('laporan.dftunggu',array('datas'=>$datas));
 	}
 
 	public function dftunggu_pdf(Request $request)
@@ -265,6 +271,149 @@ class LaporanController extends Controller
         return $pdf->stream('laporan_dftunggu_'.date('Y-m-d_H-i-s').'.pdf');
         
 	}
+
+
+    public function pembelajaran_view(Request $request)
+    {
+        if(!empty($request->query('id_santri'))&& !empty($request->query('id_halaqah'))) {
+            $santri = $request->query('id_santri');
+            $halaqah = $request->query('id_halaqah');
+             
+            $result = DB::table('h_halaqah')->select('kode_halaqah')->where('id_halaqah',$halaqah)->first();
+            $kelas = $result->kode_halaqah;
+
+            $datas = DB::table('h_pembelajaran')
+                    ->join('pertemuan', 'h_pembelajaran.id_pertemuan', '=', 'pertemuan.id_pertemuan')
+                    ->select('h_pembelajaran.*','pertemuan.id_halaqah')
+                    ->where('pertemuan.id_halaqah',$halaqah)
+                    ->where('h_pembelajaran.id_santri',$santri)->get(); 
+
+            $result = DB::table('santri')->select('nama_santri')->where('id_santri',$santri)->first();
+            $nama = $result->nama_santri;
+
+            $result2 = DB::table('santri')->select('nis')->where('id_santri',$santri)->first();
+            $nis = $result2->nis;
+
+            
+                            
+           
+        }
+        else{
+            $datas = Pembelajaran::all();
+           
+        }
+
+        
+           return view('laporan.pembelajaran',array('datas'=>$datas));
+    }
+
+    public function pembelajaran_pdf(Request $request)
+    {
+        if(!empty($request->query('id_santri'))&& !empty($request->query('id_halaqah'))) {
+            $santri = $request->query('id_santri');
+            $halaqah = $request->query('id_halaqah');
+            $hqq = DB::table('h_halaqah')
+                    ->join('pegawai', 'h_halaqah.id_pegawai', '=', 'pegawai.id_pegawai')
+                    ->select('h_halaqah.*','pegawai.nama_guru as namapengajar')
+                    ->where('h_halaqah.id_halaqah',$halaqah)->get();
+
+            // $result = DB::table('pegawai')->select('nama_guru')->where('id_halaqah',$halaqah)->first();
+            // $hq = $result->nama_guru;
+
+               
+            $datas = DB::table('h_pembelajaran')
+                    ->join('pertemuan', 'h_pembelajaran.id_pertemuan', '=', 'pertemuan.id_pertemuan')
+                    ->select('h_pembelajaran.*','pertemuan.id_halaqah')
+                    ->where('pertemuan.id_halaqah',$halaqah)
+                    ->where('h_pembelajaran.id_santri',$santri)->get(); 
+
+            $result = DB::table('santri')->select('nama_santri')->where('id_santri',$santri)->first();
+            $nama = $result->nama_santri;
+
+            $result2 = DB::table('santri')->select('nis')->where('id_santri',$santri)->first();
+            $nis = $result2->nis;
+
+            $c1 = DB::table('h_riwayat')->where('id_santri',$santri)->get();
+         
+           
+        }
+        else{
+            $datas = Pembelajaran::all();
+            $nama="";
+            $nis="";
+            $c1="";
+           
+        }
+
+        
+        $today = Carbon::now()->format('d-m-Y');
+        
+
+         $pdf= PDF::loadView('laporan.pembelajaran_pdf', array('datas'=>$datas,'today'=>$today,'c1'=>$c1,'nama'=>$nama,'nis'=>$nis,'hqq'=>$hqq)); 
+        return $pdf->stream('laporan_pembelajaran_'.date('Y-m-d_H-i-s').'.pdf');
+    }
+
+
+
+    public function keaktifan_view(Request $request)
+    {
+        if(!empty($request->query('id_santri'))&& !empty($request->query('id_halaqah'))) {
+            $santri = $request->query('id_santri');
+            $halaqah = $request->query('id_halaqah');
+             
+            $result = DB::table('h_halaqah')->select('kode_halaqah')->where('id_halaqah',$halaqah)->first();
+            $kelas = $result->kode_halaqah;
+
+            $datas = DB::table('h_riwayat')->where('id_santri',$santri)->where('id_halaqah',$halaqah)->get();
+
+            $result = DB::table('santri')->select('nama_santri')->where('id_santri',$santri)->first();
+            $nama = $result->nama_santri;
+
+            $result2 = DB::table('santri')->select('nis')->where('id_santri',$santri)->first();
+            $nis = $result2->nis;
+        }
+        else{
+            $datas = Riwayat::all();  
+        }
+           return view('laporan.aktifsantri',array('datas'=>$datas));
+    }
+
+    public function keaktifan_pdf(Request $request)
+    {
+        if(!empty($request->query('id_santri'))&& !empty($request->query('id_halaqah'))) {
+            $santri = $request->query('id_santri');
+            $halaqah = $request->query('id_halaqah');
+             
+            $result = DB::table('h_halaqah')->select('kode_halaqah')->where('id_halaqah',$halaqah)->first();
+            $kelas = $result->kode_halaqah;
+
+            $datas = DB::table('h_pembelajaran')
+                    ->join('pertemuan', 'h_pembelajaran.id_pertemuan', '=', 'pertemuan.id_pertemuan')
+                    ->select('h_pembelajaran.*','pertemuan.id_halaqah')
+                    ->where('pertemuan.id_halaqah',$halaqah)
+                    ->where('h_pembelajaran.id_santri',$santri)->get(); 
+
+
+            $result = DB::table('santri')->select('nama_santri')->where('id_santri',$santri)->first();
+            $nama = $result->nama_santri;
+
+            $result2 = DB::table('santri')->select('nis')->where('id_santri',$santri)->first();
+            $nis = $result2->nis;
+
+        }
+        else{
+            $datas = Pembelajaran::all();
+           
+        }
+
+           return view('laporan.pembelajaran',array('datas'=>$datas));
+    }
+
+
+
+
+
+
 
 
     

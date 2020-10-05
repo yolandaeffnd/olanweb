@@ -33,6 +33,7 @@ Route::resource('halaqah','HalaqahController');
 Route::resource('beasiswa','BeasiswaController');
 Route::resource('pembayaran','PembayaranController');
 Route::post('/get_fields/{id_santri}', 'PembayaranController@getAllFields');
+Route::get('/pembayaran/index/pdf/{id_pembayaran}', 'PembayaranController@bukti_pdf');
 Route::resource('penempatan2','PenempatanController');
 Route::resource('halaqahsantri','HalaqahSantriController');
 Route::resource('pertemuan','PertemuanController');
@@ -50,3 +51,6 @@ Route::get('/laporan/halaqahsantri_view', 'LaporanController@halaqahsantri_view'
 Route::get('/laporan/halaqahsantri_view/pdf', 'LaporanController@halaqahsantri_pdf');
 Route::get('/laporan/dftunggu_view', 'LaporanController@dftunggu_view');
 Route::get('/laporan/dftunggu_view/pdf', 'LaporanController@dftunggu_pdf');
+Route::get('/laporan/pembelajaran_view', 'LaporanController@pembelajaran_view');
+Route::get('/laporan/pembelajaran_view/pdf', 'LaporanController@pembelajaran_pdf');
+Route::get('/laporan/keaktifan_view', 'LaporanController@keaktifan_view');

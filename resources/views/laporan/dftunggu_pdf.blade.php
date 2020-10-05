@@ -16,7 +16,8 @@
 		</style>
 </head>
 <body>
-<!-- <img src="{{asset('assets/images/simaq/tes.jpeg')}}" style="position: absolute; width: 100px; height: auto;"> -->
+<img src="{{public_path('assets/images/quran.jpg')}}" style="position: absolute; width: 100px; height: auto;">
+
 <table >
         <tr>
           <td align="center">
@@ -101,7 +102,7 @@
   <br><br>
  <table>
 		<tr style="font-size: 16px; font-weight: bold">
-				<td>Jumlah Registrasi</td>
+				<td>Jumlah Daftar Tunggu</td>
 				<td>: <?php echo $c1;?></td>
 		</tr>
 		<br><br><br><br>

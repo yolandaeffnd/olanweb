@@ -3,15 +3,20 @@
  @section('content')
 <div class="card">
                   <div class="card-header">
-                    <h4 class="card-title">DATA KEAKTIFAN SANTRI</h4>
-      
+                    <h4 class="card-title">DATA PERKEMBANGAN PEMBELAJARAN</h4>
+          
+                        
                        </div>
 
 <div class="col-md-12 grid-margin">
 <div class="card-body">
     <!-- <a href="{{route('registrasi.create')}}" class="btn ml-lg-auto download-button btn-success btn-sm my-1 my-sm-0">Tambah Data</a> -->
+
       <form method="POST" action="">
         {{ csrf_field() }}
+
+
+
   <div class="row">
      <div class="form-group col-md-6">
           <label for="exampleInputEmail1">Santri</label>
@@ -64,16 +69,16 @@
                      <thead>
                     <tr>      
                       <th>NO</th>
-                      <th>SURAT SELESAI</th>
+                      <th>PERTEMUAN</th>
+                
+                     
+                      <th>TANGGAL</th>
+                      <th>JUZ MULAI</th>
+                      <th>JUZ SELESAI</th>
                       <th>TOTAL JUZ</th>
-                      <th>TOTAL PERTEMUAN</th>
-                      <th>TOTAL HADIR</th>
-                      <th>TOTAL SAKIT</th>
-                      <th>TOTAL ALFA</th>
-                      <th>STATUS KEAKTIFAN</th>
                       
                       
-               
+                      
                       
                     </tr>
                   </thead>
@@ -87,52 +92,12 @@
                         @foreach($datas as $data)
                         <tr>
                           <td><b>{{++$i}}.</b></td>
-                          @if(!empty($data->surat_selesai))
-                          <td>{{$data->surat_selesai}}</t>
-                          @else
-                          <td>{{$data->surat_selesai}}</t>
-                          @endif
-
-
-                          @if(!empty($data->total_juz))
+                          <td>{{$data->id_pertemuan}}</t>
+                         
+                         <td>{{$data->tgl}}</td>
+                         <td>{{$data->id_juz_mulai}}</td>
+                         <td>{{$data->id_juz_selesai}}</td>
                          <td>{{$data->total_juz}}</td>
-                         @else
-                         <td></td>
-                         @endif
-
-
-                          @if(!empty($data->total_pertemuan))
-                         <td>{{$data->total_pertemuan}}</td>
-                         @else
-                         <td></td>
-                         @endif
-
-                         @if(!empty($data->total_pertemuan))
-                         <td>{{$data->total_hadir}}</td>
-                         @else
-                         <td></td>
-                         @endif
-
-                         @if(!empty($data->total_pertemuan))
-                         <td>{{$data->total_alfa}}</td>
-                         @else
-                         <td></td>
-                         @endif
-                         
-                          @if(!empty($data->total_pertemuan))
-                         <td>{{$data->total_sakit}}</td>
-                         @else
-                         <td></td>
-                         @endif
-
-                          @if(!empty($data->status_keaktifan))
-                         <td>{{$data->status_keaktifan}}</td>
-                         @else
-                         <td></td>
-                         @endif
-                         
-                      
-                          
                         
                           
                           

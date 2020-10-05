@@ -3,7 +3,7 @@
  @section('content')
 <div class="card">
                   <div class="card-header">
-                    <h4 class="card-title">DATA REGISTRASI</h4>
+                    <h4 class="card-title">DATA HALAQAH SANTRI</h4>
           
                         
                        </div>
@@ -17,7 +17,7 @@
 
   <div class="row">
      <div class="form-group col-md-6">
-          <label for="exampleInputEmail1">Halaqah</label>
+          <label for="exampleInputEmail1">Halaqah Santri</label>
             <select name="id_halaqah" class="form-control" id="id_halaqah">
         <option value="">Pilih Halaqah</option>
        <?php $halaqah = \App\Halaqah::all();  ?>

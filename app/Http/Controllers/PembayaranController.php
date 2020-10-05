@@ -8,6 +8,8 @@ use App\Periode2;
 use App\Periode;
 use App\Riwayat;
 use App\Beasiswa;
+use PDF;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -84,9 +86,23 @@ class PembayaranController extends Controller
      * @param  \App\Pembayaran  $pembayaran
      * @return \Illuminate\Http\Response
      */
-    public function show(Pembayaran $pembayaran)
+    public function show($id)
     {
-        //
+        
+         
+    }
+
+     public function bukti_pdf($id)
+    {
+        
+         $datas = Pembayaran::where('id_pembayaran',$id)->get();
+         $today = Carbon::now()->format('d-m-Y');
+
+
+
+         $pdf= PDF::loadView('pembayaran.bukticetak_pdf', array('datas'=>$datas,'today'=>$today)); 
+        
+        return $pdf->stream('pembayaran_bukticetak_'.date('Y-m-d_H-i-s').'.pdf');
     }
 
     /**
