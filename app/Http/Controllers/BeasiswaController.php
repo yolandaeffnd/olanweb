@@ -6,6 +6,7 @@ use App\Beasiswa;
 use App\Santri;
 use App\Periode2;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BeasiswaController extends Controller
 {

@@ -130,18 +130,18 @@
                 <i class="icon-globe menu-icon"></i>
               </a>
             </li>
-          <!--   <li class="nav-item">
-              <a class="nav-link" href="{{route('hari.index')}}">
-                <span class="menu-title">Hari</span>
-                <i class="icon-globe menu-icon"></i>
-              </a>
-            </li>
              <li class="nav-item">
-              <a class="nav-link" href="{{route('tipe.index')}}">
-                <span class="menu-title">Tipe</span>
-                <i class="icon-globe menu-icon"></i>
+              <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                <span class="menu-title">LAPORAN</span>
+                <i class="icon-layers menu-icon"></i>
               </a>
-            </li> -->
+              <div class="collapse" id="ui-basic">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="{{url('laporan/registrasi')}}">Laporan Registrasi</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Lasporan Santri</a></li>
+                </ul>
+              </div>
+            </li>
           
           </ul>
   

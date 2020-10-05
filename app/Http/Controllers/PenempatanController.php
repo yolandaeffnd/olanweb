@@ -20,11 +20,11 @@ class PenempatanController extends Controller
      */
     public function index()
     {
-       // $datas= \App\Penempatan::all();
+       $datas= \App\Penempatan::all();
 
-       $b = \Carbon\Carbon::today();
+       // $b = \Carbon\Carbon::today();
 
-       $datas = DB::table('h_penempatan_santri')->where('tgl_mulai',$b)->update(['status'=>'terlaksana']);
+       // $datas = DB::table('h_penempatan_santri')->where('tgl_mulai',$b)->update(['status'=>'terlaksana']);
 
 
      
