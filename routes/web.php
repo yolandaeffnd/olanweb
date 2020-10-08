@@ -39,7 +39,9 @@ Route::resource('halaqahsantri','HalaqahSantriController');
 Route::resource('pertemuan','PertemuanController');
 Route::resource('pembelajaran','PembelajaranController');
 Route::resource('pimpinan','PimpinanController');
+Route::get('/beranda','PimpinanController@beranda')->name('beranda');
 Route::resource('agenda','AgendaController');
+
 Route::get('/laporan/registrasi', 'LaporanController@registrasi');
 Route::get('/laporan/registrasi_view', 'LaporanController@registrasi_view');
 Route::get('/laporan/registrasi_view/pdf', 'LaporanController@registrasi_pdf');

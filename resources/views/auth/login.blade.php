@@ -15,9 +15,9 @@
                 <form class="pt-3" method="POST" action="{{ route('login') }}">
                 @csrf
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control @error('email') is-invalid @enderror form-control-lg" id="email" name="email" placeholder="Email Address" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                    @error('email')
+                    <label for="exampleInputEmail1">Username</label>
+                    <input type="text" class="form-control @error('nip') is-invalid @enderror form-control-lg" id="nip" name="nip" placeholder="Nip Guru" value="{{ old('nip') }}" required autocomplete="nip" autofocus>
+                    @error('nip')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -32,10 +32,31 @@
                         </span>
                     @enderror                  
                   </div>
+
+                   <div class="form-group">
+                    <label for="exampleInputPassword1">Level</label>
+                     <select name="level" class="form-control" id="level">
+                        <option value="">-Pilih Level-</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Pimpinan">Pimpinan</option>
+                        <option value="Wakbid Kesiswaan">Wakbid Kesiswaan</option>
+                        <option value="Wakbid Kurikulum">Wakbid Kurikulum</option>
+                        <option value="Bendahara">Bendahara</option>
+                        <option value="Guru">Guru</option>
+                    </select>
+                    @error('level')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror                  
+                  </div>
                  
                   <div class="mt-3">
                     <!-- <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">LOGIN</a> -->
                     <button type="submit" class="btn btn-block btn-success btn-lg font-weight-medium auth-form-btn">LOGIN</button>
+                  </br>
+                    <p>Belum Punya Akun? <a href="{{ route('register') }}"> {{ __('REGISTER') }}</a></p>
+                  
                   </div>
                  
                 </form>

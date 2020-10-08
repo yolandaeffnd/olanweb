@@ -15,11 +15,12 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('nip')->nullable();
+            $table->string('nama')->nullable();
+            $table->string('password')->nullable();
+            $table->string('gambar')->nullable();
+            $table->enum('level',['Admin','Pimpinan','Wakbid Kesiswaan','Wakbid Kurikulum','Bendahara','Guru'])->nullable();
+            $table->rememberToken()->nullable();
             $table->timestamps();
         });
     }
