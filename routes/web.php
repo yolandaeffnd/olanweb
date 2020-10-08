@@ -53,4 +53,3 @@ Route::get('/laporan/dftunggu_view', 'LaporanController@dftunggu_view');
 Route::get('/laporan/dftunggu_view/pdf', 'LaporanController@dftunggu_pdf');
 Route::get('/laporan/pembelajaran_view', 'LaporanController@pembelajaran_view');
 Route::get('/laporan/pembelajaran_view/pdf', 'LaporanController@pembelajaran_pdf');
-Route::get('/laporan/keaktifan_view', 'LaporanController@keaktifan_view');

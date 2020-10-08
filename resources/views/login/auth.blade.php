@@ -6,11 +6,11 @@
         <div class="content-wrapper d-flex align-items-center auth">
           <div class="row flex-grow">
             <div class="col-lg-4 mx-auto">
-              <div class="auth-form-light text-left p-5"><center>
+              <div class="auth-form-light text-left p-5">
                 <div class="brand-logo">
-                  <img src="{{asset('assets/images/simaq.png')}}">
+                  <img src="{{asset('assets/images/logo.svg')}}">
                 </div>
-                <h3><b>LOGIN SIMAQ</b></h3></center>
+                <h4>Login SIMAQ</h4>
                 <!-- <h6 class="font-weight-light">Sign in to continue.</h6> -->
                 <form class="pt-3" method="POST" action="{{ route('login') }}">
                 @csrf
@@ -35,7 +35,7 @@
                  
                   <div class="mt-3">
                     <!-- <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">LOGIN</a> -->
-                    <button type="submit" class="btn btn-block btn-success btn-lg font-weight-medium auth-form-btn">LOGIN</button>
+                    <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">LOGIN</button>
                   </div>
                  
                 </form>

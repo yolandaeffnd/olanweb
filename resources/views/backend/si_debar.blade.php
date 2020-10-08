@@ -101,6 +101,13 @@
               </a>
             </li>
 
+             <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span class="menu-title">User</span>
+                <i class="icon-book-open  menu-icon"></i>
+              </a>
+            </li>
+
             <li class="nav-item">
               <a class="nav-link" href="{{route('pimpinan.index')}}">
                 <span class="menu-title">Pimpinan</span>
@@ -118,7 +125,7 @@
                   <li class="nav-item"> <a class="nav-link" href="{{url('laporan/registrasi_view')}}">Laporan Registrasi</a></li>
                   <li class="nav-item"> <a class="nav-link" href="{{url('laporan/santri_view')}}">Laporan Santri</a></li>
                   <li class="nav-item"> <a class="nav-link" href="{{url('laporan/pembelajaran_view')}}">Laporan Pembelajaran</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{url('laporan/keaktifan_view')}}">Laporan Keaktifan Santri</a></li>
+                  
                   <li class="nav-item"> <a class="nav-link" href="{{url('laporan/dftunggu_view')}}">Laporan Daftar Tunggu</a></li>
                   <li class="nav-item"> <a class="nav-link" href="{{url('laporan/pembayaran_view')}}">Laporan Pembayaran</a></li>
                   <li class="nav-item"> <a class="nav-link" href="{{url('laporan/halaqahsantri_view')}}">Laporan Halaqah Santri</a></li>
