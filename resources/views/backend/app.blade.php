@@ -39,7 +39,7 @@
    
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="{{asset('assets/images/favicon.png')}}" />
+    <link rel="shortcut icon" href="{{asset('assets/images/quran.jpg')}}" />
   </head>
   <body>
     <div class="container-scroller">
@@ -58,9 +58,14 @@
             <li class="nav-item dropdown d-none d-xl-inline-flex user-dropdown">
               <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
 
-                <img class="img-xs rounded-circle ml-2" src="{{asset('assets/images/faces/face8.jpg')}}" alt="Profile image"> <span class="font-weight-normal">  {{ Auth::user()->nama }}</span></a>
+               @if(Auth::user()->gambar == '')
+                  <img class="img-xs rounded-circle"  src="{{asset('assets/images/profil/default.png')}}" alt="profile image">
+                @else
+                <img class="img-xs rounded-circle"  src="{{asset('assets/images/profil/'.Auth::user()->gambar)}}" alt="profile image">
+                @endif
+                <span class="font-weight-normal">  {{ Auth::user()->nama }}</span></a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
-               <a class="dropdown-item"><i class="dropdown-item-icon icon-user text-primary"></i> My Profile</a>
+               <a class="dropdown-item" href="{{route('user.edit',Auth::user()->id)}}"><i class="dropdown-item-icon icon-user text-primary"></i> My Profile</a>
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="dropdown-item-icon icon-power text-primary"></i>Sign Out</a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -25,7 +25,6 @@ class CreateSantriTable extends Migration
             $table->text('alamat')->nullable();
             $table->string('pendidikan',50)->nullable();
             $table->string('kelas',25)->nullable();
-            $table->enum('jespem', ['Iqro','Alquran'])->nullable();
             $table->string('nama_ayah',50)->nullable();
             $table->string('pekerjaan_ayah',50)->nullable();
             $table->string('nama_ibu',50)->nullable();

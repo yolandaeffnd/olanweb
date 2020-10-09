@@ -1,6 +1,13 @@
 @extends('backend.app')
 
  @section('content')
+ <style>
+      #image-preview{
+        display:none;
+        width : 250px;
+        height : 300px;
+        }
+     </style>
 
 <div class="card">
                   <div class="card-header">
@@ -16,6 +23,10 @@
         <div class="form-group">
           <label for="exampleInputEmail1">Nama Guru</label>
             <input name="nama_guru" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$data->nama_guru}}">
+    </div>
+    <div class="form-group">
+          <label for="exampleInputEmail1">Nip Guru</label>
+            <input name="nip" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$data->nip}}">
     </div>
        <div class="form-group">
           <label for="exampleInputEmail1">Tanggal Lahir</label>
@@ -76,13 +87,16 @@
             <input name="jabatan" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$data->jabatan}}">
     </div>
     <div class="form-group">
-          <label for="exampleInputEmail1">Username</label>
-            <input name="username" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$data->username}}">
-    </div>
-    <div class="form-group">
-          <label for="exampleInputEmail1">Password</label>
-            <input name="password" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$data->password}}">
-    </div>
+                              <label for="foto" class="col-lg-4 control-label"><strong>Foto</strong></label>
+                                        <div class="col-lg-6">
+                                <img width="200" height="200" @if($data->gambar) src="{{ asset('assets/images/guru/'.$data->gambar) }}" @endif />
+                                <input type="file" class="uploads form-control" style="margin-top: 20px;" name="gambar" >
+                            </div>
+                                    </div>
+    
+
+    
+
     
 
 
@@ -107,3 +121,27 @@
 
 
 @stop
+@section('js')
+<script type="text/javascript">
+        function readURL() {
+            var input = this;
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $(input).prev().attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $(function () {
+            $(".uploads").change(readURL)
+            $("#f").submit(function(){
+               
+                return false
+            })
+        })
+        </script>
+    
+</section>
+@endsection

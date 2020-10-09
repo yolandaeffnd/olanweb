@@ -55,7 +55,7 @@
                     <!-- <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">LOGIN</a> -->
                     <button type="submit" class="btn btn-block btn-success btn-lg font-weight-medium auth-form-btn">LOGIN</button>
                   </br>
-                    <p>Belum Punya Akun? <a href="{{ route('register') }}"> {{ __('REGISTER') }}</a></p>
+                    <p>Belum Punya Akun? Lakukan <a href="{{ route('register') }}"> {{ __('REGISTER') }}</a></p>
                   
                   </div>
                  

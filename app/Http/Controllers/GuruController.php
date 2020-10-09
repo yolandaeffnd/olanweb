@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Guru;
 use Illuminate\Http\Request;
 use DB;
+use Carbon\Carbon;
 
 class GuruController extends Controller
 {
@@ -42,6 +43,17 @@ class GuruController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->file('gambar') == '') {
+            $gambar = "";
+        } else {
+            $file = $request->file('gambar');
+            $dt = Carbon::now();
+            $acak = $file->getClientOriginalExtension();
+            $fileName = rand(11111,99999).'-'.$dt->format('Y-m-d-H-i-s').'.'.$acak;
+            $request->file('gambar')->move("assets/images/guru", $fileName);
+            $gambar = $fileName;
+        }
+
         $data = Guru::create([
         'nama_guru' => $request->get('nama_guru'),
         'tgl_lahir' => $request->get('tgl_lahir'),
@@ -53,9 +65,7 @@ class GuruController extends Controller
         'tgl_masuk' => $request->get('tgl_masuk'),
         'jml_hafalan' => $request->get('jml_hafalan'),
         'jabatan' => $request->get('jabatan'),
-        'username' => $request->get('username'),
-        'password' => $request->get('password'),
-        'gambar' => null,
+        'gambar' =>  $gambar,
         
         ]);
         return redirect('/guru')->with('sukses','data berhasil ditambahkan');
@@ -69,9 +79,10 @@ class GuruController extends Controller
      * @param  \App\Guru  $guru
      * @return \Illuminate\Http\Response
      */
-    public function show(Guru $guru)
+    public function show($id)
     {
-        //
+         $data = \App\Guru::find($id);
+        return view('guru/detail', compact('data'));
     }
 
     /**
@@ -98,6 +109,7 @@ class GuruController extends Controller
     {
         $data = \App\Guru::find($id);
         $data->nama_guru = $request->input('nama_guru');
+        $data->nip = $request->input('nip');
         $data->tgl_lahir = $request->input('tgl_lahir');
         $data->jk = $request->input('jk');
         $data->alamat = $request->input('alamat');
@@ -107,8 +119,15 @@ class GuruController extends Controller
         $data->tgl_masuk = $request->input('tgl_masuk');
         $data->jml_hafalan = $request->input('jml_hafalan');
         $data->jabatan = $request->input('jabatan');
-        $data->username = $request->input('username');
-        $data->password = $request->input('password');
+         if($request->file('gambar'))
+        {
+            $file = $request->file('gambar');
+            $dt = Carbon::now();
+            $acak = $file->getClientOriginalExtension();
+            $fileName = rand(11111,99999).'-'.$dt->format('Y-m-d-H-i-s').'.'.$acak;
+            $request->file('gambar')->move("assets/images/guru", $fileName);
+            $data->gambar = $fileName;
+        }
         $data->update();
       return redirect()->route('guru.index');
     }

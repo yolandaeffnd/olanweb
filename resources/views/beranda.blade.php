@@ -53,6 +53,7 @@
                   
                 </div>
               </div>
+    @if(Auth::user()->level != 'Wakbid Kesiswaan' && Auth::user()->level!='Wakbid Kurikulum' && Auth::user()->level!='Bendahara' && Auth::user()->level!='Guru' && Auth::user()->level!='Admin')
               <div class="col-md-4 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
@@ -60,11 +61,25 @@
                   </div>
                 </div>
               </div>
-            </div>
             
+            
+ 
 
+            <div class="row">
+              <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                  <div id="csantri">
 
-             
+                  </div>
+
+            </div>
+          </div>
+        </div>  
+      @endif
+
+      </div>
+
+                  
 
              
            
@@ -79,6 +94,49 @@
 
 @section('js')
 <script src="https://code.highcharts.com/highcharts.js"></script>
+<script type="text/javascript">
+
+Highcharts.chart('csantri', {
+    chart: {
+        type: 'line'
+    },
+    title: {
+        text: 'Jumlah Santri Rumah Tahfizh Ahlul Quran'
+    },
+    subtitle: {
+        text: 'Per Periode'
+    },
+    xAxis: {
+        categories: {!!json_encode($kategori)!!},
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Jumlah'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y} santri</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Jumlah',
+        data: {!!json_encode($data)!!},
+
+    }]
+});
+</script>
 <script type="text/javascript">
 
 // Build the chart

@@ -41,6 +41,7 @@ Route::resource('pembelajaran','PembelajaranController');
 Route::resource('pimpinan','PimpinanController');
 Route::get('/beranda','PimpinanController@beranda')->name('beranda');
 Route::resource('agenda','AgendaController');
+Route::resource('user','UserController');
 
 Route::get('/laporan/registrasi', 'LaporanController@registrasi');
 Route::get('/laporan/registrasi_view', 'LaporanController@registrasi_view');

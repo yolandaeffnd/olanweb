@@ -15,6 +15,7 @@ class CreatePegawaiTable extends Migration
     {
         Schema::create('pegawai', function (Blueprint $table) {
             $table->bigIncrements('id_pegawai');
+            $table->string('nip',50)->nullable();
             $table->string('nama_guru',50);
             $table->string('gambar')->nullable();
             $table->date('tempat_lahir')->nullable();
@@ -27,8 +28,6 @@ class CreatePegawaiTable extends Migration
             $table->date('tgl_masuk')->nullable();
             $table->integer('jml_hafalan')->unsigned()->nullable();
             $table->string('jabatan',50)->nullable();
-            $table->string('nip',50)->nullable();
-            $table->string('password',50)->nullable();
             $table->timestamps();
         });
     }

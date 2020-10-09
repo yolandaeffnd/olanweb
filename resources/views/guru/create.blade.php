@@ -1,6 +1,13 @@
 @extends('backend.app')
 
  @section('content')
+ <style>
+      #image-preview{
+        display:none;
+        width : 250px;
+        height : 300px;
+        }
+     </style>
 
 <div class="card">
                   <div class="card-header">
@@ -9,12 +16,16 @@
 
                     <!--=====================================================================================================================================TAMBAH DATA SANTRI===================-->
 <div class="card-body">
- <form method="POST" action="{{ route('guru.store') }}">
+ <form method="POST" action="{{ route('guru.store') }}" enctype="multipart/form-data">
         {{ csrf_field() }}
      
         <div class="form-group">
           <label for="exampleInputEmail1">Nama Guru</label>
             <input name="nama_guru" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="nama guru">
+    </div>
+     <div class="form-group">
+          <label for="exampleInputEmail1">Nip</label>
+            <input name="nip" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="nip guru">
     </div>
       <div class="form-group">
           <label for="exampleInputEmail1">Tanggal Lahir</label>
@@ -72,14 +83,14 @@
           <label for="exampleInputEmail1">Jabatan</label>
             <input name="jabatan" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="jabatan">
     </div>
-    <div class="form-group">
-          <label for="exampleInputEmail1">Username</label>
-            <input name="username" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="username">
-    </div>
-    <div class="form-group">
-          <label for="exampleInputEmail1">Password</label>
-            <input name="password" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="password">
-    </div>
+   
+      <div class="form-group">
+                                        <label for="foto" class="col-lg-4 control-label"><strong>Foto</strong></label>
+                                        <div class="col-lg-6">
+                                            <img id="preview" width="200" height="200"/>
+                                            <input type="file" class="uploads form-control" style="margin-top: 20px;" name="gambar">
+                                        </div>
+                                    </div>
     
 
 
@@ -104,3 +115,27 @@
 
 
 @stop
+@section('js')
+<script type="text/javascript">
+        function readURL() {
+            var input = this;
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $(input).prev().attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $(function () {
+            $(".uploads").change(readURL)
+            $("#f").submit(function(){
+               
+                return false
+            })
+        })
+        </script>
+    
+</section>
+@endsection
