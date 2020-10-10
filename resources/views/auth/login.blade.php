@@ -58,8 +58,10 @@
                     <p>Belum Punya Akun? Lakukan <a href="{{ route('register') }}"> {{ __('REGISTER') }}</a></p>
                   
                   </div>
+
                  
                 </form>
+                
               </div>
             </div>
           </div>

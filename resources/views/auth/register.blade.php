@@ -27,7 +27,7 @@
                             <label for="exampleInputPassword1">{{ __('Nama') }}</label>
 
                          
-                                <input id="nama" type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama') }}" required autocomplete="nama" autofocus>
+                                <input id="nama" type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama') }}" placeholder="Nama" required autocomplete="nama" autofocus>
 
                                 @error('nama')
                                     <span class="invalid-feedback" role="alert">
@@ -40,7 +40,7 @@
                                 <label for="exampleInputPassword1">{{ __('Password') }}</label>
 
                           
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="new-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -54,7 +54,7 @@
                            
 
                            
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" required autocomplete="new-password">
                          
                         </div>
 

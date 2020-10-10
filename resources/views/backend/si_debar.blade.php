@@ -14,7 +14,7 @@
                 <i class="icon-home menu-icon"></i>
               </a>
             </li>
-           @if(Auth::user()->level != 'Bendahara' && Auth::user()->level!='Wakbid Kurikulum' && Auth::user()->level!='Pimpinan' && Auth::user()->level!='Guru')
+           @if(Auth::user()->level != 'Bendahara' && Auth::user()->level!='Wakbid Kurikulum' && Auth::user()->level!='Guru')
             <li class="nav-item">
               <a class="nav-link" href="{{route('beasiswa.index')}}">
                 <span class="menu-title">Beasiswa</span>
@@ -23,7 +23,7 @@
             </li>
             @endif
 
-             @if(Auth::user()->level == 'Admin')
+             @if(Auth::user()->level == 'Admin' || Auth::user()->level == 'Pimpinan')
             <li class="nav-item">
               <a class="nav-link" data-toggle="collapse" href="#kelas" aria-expanded="false" aria-controls="kelas">
                 <span class="menu-title">HALAQAH</span>
@@ -35,7 +35,10 @@
                   <li class="nav-item"> <a class="nav-link" href="{{route('halaqahsantri.index')}}">Halaqah Santri</a></li>
                 </ul>
               </div>
-            </li> 
+            </li>
+            @endif 
+
+              @if(Auth::user()->level == 'Admin')
             <li class="nav-item">
               <a class="nav-link" data-toggle="collapse" href="#kegiatan" aria-expanded="false" aria-controls="kegiatan">
                 <span class="menu-title">DATA MASTER</span>
@@ -51,6 +54,8 @@
                 </ul>
               </div>
             </li>
+            @endif
+             @if(Auth::user()->level == 'Admin' || Auth::user()->level == 'Pimpinan')
             <li class="nav-item">
               <a class="nav-link" href="{{route('guru.index')}}">
                 <span class="menu-title">Guru</span>
@@ -64,7 +69,7 @@
               </a>
             </li>
             @endif
-          @if(Auth::user()->level!='Wakbid Kurikulum' && Auth::user()->level!='Wakbid Kesiswaan' && Auth::user()->level!='Guru' && Auth::user()->level!='Pimpinan')
+          @if(Auth::user()->level!='Wakbid Kurikulum' && Auth::user()->level!='Wakbid Kesiswaan' && Auth::user()->level!='Guru' )
             <li class="nav-item">
               <a class="nav-link" href="{{route('registrasi.index')}}">
                 <span class="menu-title">Registrasi</span>
@@ -72,10 +77,8 @@
               </a>
             </li>
               @endif
-             
 
-
-           @if(Auth::user()->level == 'Bendahara')
+           @if(Auth::user()->level == 'Bendahara' || Auth::user()->level == 'Pimpinan' )
              <li class="nav-item">
               <a class="nav-link" href="{{route('pembayaran.index')}}">
                 <span class="menu-title">Pembayaran</span>
@@ -99,8 +102,7 @@
               </a>
             </li>
           @endif
-
-            @if(Auth::user()->level == 'Wakbid Kesiswaan')
+          @if(Auth::user()->level != 'Admin' && Auth::user()->level!='Wakbid Kurikulum' && Auth::user()->level!='Bendahara' && Auth::user()->level!='Wakbid Kesiswaan' && Auth::user()->level!='Pimpinan')
              <li class="nav-item">
               <a class="nav-link" href="{{route('pertemuan.index')}}">
                 <span class="menu-title">Pertemuan</span>
@@ -109,7 +111,7 @@
             </li>
             @endif
 
-           @if(Auth::user()->level != 'Wakbid Kesiswaan' && Auth::user()->level!='Wakbid Kurikulum' && Auth::user()->level!='Bendahara' && Auth::user()->level!='Guru' && Auth::user()->level!='Pimpinan')
+           @if(Auth::user()->level != 'Wakbid Kesiswaan' && Auth::user()->level!='Bendahara')
              <li class="nav-item">
               <a class="nav-link" href="{{route('pembelajaran.index')}}">
                 <span class="menu-title">Pembelajaran</span>
@@ -156,10 +158,7 @@
 
             </li>
 
-              
-
-       
-            
+                  
           </ul>
 </nav
 
