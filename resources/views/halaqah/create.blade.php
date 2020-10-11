@@ -84,13 +84,13 @@
                             <div class="col-sm-4">
                               <div class="form-check">
                                 <label class="form-check-label">
-                                  <input type="radio" class="form-check-input" name="jk" id="jk" value="laki-laki" checked=""> Laki-laki <i class="input-helper"></i></label>
+                                  <input type="radio" class="form-check-input" name="jk" id="jk" value="Laki-laki" checked=""> Laki-laki <i class="input-helper"></i></label>
                               </div>
                             </div>
                             <div class="col-sm-5">
                               <div class="form-check">
                                 <label class="form-check-label">
-                                  <input type="radio" class="form-check-input" name="jk" id="jk" value="perempuan"> Perempuan <i class="input-helper"></i></label>
+                                  <input type="radio" class="form-check-input" name="jk" id="jk" value="Perempuan"> Perempuan <i class="input-helper"></i></label>
                               </div>
                             </div>
                           </div>

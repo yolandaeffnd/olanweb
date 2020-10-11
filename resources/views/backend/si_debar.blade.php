@@ -22,7 +22,7 @@
             </li>
             @endif
 
-             @if(Auth::user()->level == 'Admin' || Auth::user()->level == 'Pimpinan')
+             @if(Auth::user()->level == 'Admin' || Auth::user()->level == 'Pimpinan' || Auth::user()->level == 'Wakbid Kesiswaan')
             <li class="nav-item">
               <a class="nav-link" data-toggle="collapse" href="#kelas" aria-expanded="false" aria-controls="kelas">
                 <span class="menu-title">HALAQAH</span>

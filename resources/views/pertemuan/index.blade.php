@@ -96,11 +96,17 @@
         {{ csrf_field() }}
    <div class="form-group">
           <label  for="exampleInputEmail1">Kode Halaqah</label>
-   
+    <?php 
+    $nip = Auth::user()->nip;
+    $guru = \App\Guru::select('id_pegawai')->where('nip',$nip)->first();
+
+    $halaqah = \App\Halaqah::where('id_pegawai',$guru)->get(); 
+
+     ?>
 
       <select name="id_halaqah" class="form-control">
         <option value="">Pilih Halaqah</option>
-       <?php $halaqah = \App\Halaqah::all();  ?>
+      
         @foreach($halaqah as $data)
         <option value="{{$data->id_halaqah}}">{{$data->kode_halaqah}} </option>
         @endforeach

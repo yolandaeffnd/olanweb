@@ -97,14 +97,8 @@ class PenempatanController extends Controller
     public function edit($id)
     {
         $data = \App\Penempatan::find($id);
-        $halaqah =DB::table('h_halaqah')
-                ->leftjoin('h_halaqah_santri','h_halaqah.id_halaqah','=',
-                            'h_halaqah_santri.id_halaqah')
-                ->select('h_halaqah.*','h_halaqah_santri.id_santri')
-                ->where('h_halaqah.id_jadwal',$data->id_jadwal)
-                ->where('h_halaqah_santri.id_santri','<','3')
-                ->get(); 
-        return view('penempatan2/edit', compact('data','halaqah'));
+       
+        return view('penempatan2/edit', compact('data'));
     }
 
     /**
@@ -135,6 +129,7 @@ class PenempatanController extends Controller
                     'id_halaqah' => $data->id_halaqah,
                 
                     ]);
+                   $data2->save();
             }
             else{
 
@@ -153,7 +148,7 @@ class PenempatanController extends Controller
             }
                      
         $data->update();
-        $data2->save();
+    
 
          $alldetail3= Riwayat::where('id_santri',$data->id_santri)->get();
              foreach($alldetail3 as $d){

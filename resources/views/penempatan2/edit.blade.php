@@ -52,35 +52,50 @@
         $temp3 =[];
 
 
-            $i=0;
-            foreach ($halaqahsantri as $hs)
+            
+            foreach ($halaqah_2 as $hq)
             {
               
-              $temp2 = \App\HalaqahSantri::where('id_halaqah',$hs->id_halaqah)->count('id_halaqah');
-              if($temp2==3)
+              $temp2 = $halaqahsantri->where('id_halaqah',$hq->id_halaqah)->count('id_santri');   
+
+              if($temp2>=3)
               {
                 
-                $hasil[] =$halaqah_2->where('id_halaqah',$hs->id_halaqah)->get();
-              
+                $hasil[] =\App\Halaqah::select('id_halaqah')->where('id_halaqah',$hq->id_halaqah)->first();
+
+                             
               } 
 
 
             }
-
             
-           
 
+            if(!empty($hasil))
+            {
+                foreach ($halaqah_2 as $ht) 
+                {
+                  foreach ($hasil as $hs) {
+                     $santri = DB::table('h_halaqah')->where('id_halaqah','!=',$hs->id_halaqah)
+                      ->where('id_jadwal',$data->id_jadwal)->where('jk',$data->santri->jk)->get();
+                  }
+                 
+                }
+            }else{
+                $santri = DB::table('h_halaqah')->where('id_jadwal',$data->id_jadwal)->where('jk',$data->santri->jk)->get();
+            }
+            
+          
           
           ?>
 
          
-        @foreach($hasil as $halaqah)
+        @foreach($santri as $halaqah)
          <option 
                   value="{{$halaqah->id_halaqah}}"
                   @if ($halaqah->id_halaqah === $data->id_halaqah)
                   selected
                   @endif
-                  >{{$halaqah->id_halaqah}}
+                  >{{$halaqah->kode_halaqah}}
                 </option>
         @endforeach
       </select>
