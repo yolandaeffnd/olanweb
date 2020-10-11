@@ -3,9 +3,10 @@
  @section('content')
 
 <div class="card">
-                  <div class="card-body">
+                  <div class="card-header">
                     <h4 class="card-title">TAMBAH DATA HALAQAH</h4>
-
+                  </div>
+<div class="card-body">
 
                     <!--=====================================================================================================================================TAMBAH DATA SANTRI===================-->
 

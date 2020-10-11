@@ -70,7 +70,7 @@
     </div>
 
 <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <a href="{{ route('jadwal.index') }}">    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></a>
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 

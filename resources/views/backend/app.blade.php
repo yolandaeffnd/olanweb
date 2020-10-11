@@ -85,7 +85,6 @@
         <!-- partial:partials/_sidebar.html -->
      @include('backend.si_debar')
         <!-- partial -->
-        
        <div class="main-panel">
           <div class="content-wrapper">
             @yield('content')

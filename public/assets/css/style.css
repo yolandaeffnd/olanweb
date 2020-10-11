@@ -12650,8 +12650,8 @@ dl {
           margin-left: 1rem; }
         .sidebar .nav .nav-item .nav-link[aria-expanded="true"] .menu-arrow:before {
           content: "\f140"; }
-      .sidebar .nav .nav-item.active:not(.navbar-brand-mini-wrapper) {
-        background: #282828; }
+     /* .sidebar .nav .nav-item.active:not(.navbar-brand-mini-wrapper) {
+        background: #282828; }*/
         .sidebar .nav .nav-item.active:not(.navbar-brand-mini-wrapper) > .nav-link .menu-title {
           color: #b3b3b3;
           font-family: "Open Sans", sans-serif;

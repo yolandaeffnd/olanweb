@@ -9,16 +9,16 @@
                     <!--=====================================================================================================================================TAMBAH DATA SANTRI===================-->
 
 
-    
+     <div class="card-body">
 
 
 
-  <form method="POST" action="{{ route('jadwal.update', $data) }}">
+  <form method="POST" action="{{ route('halaqah.update', $data) }}">
         {{ csrf_field() }}
             {{ method_field('put') }}
       <div class="form-group">
           <label for="exampleInputEmail1">Kode Halaqah</label>
-            <input name="kode_halaqah" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="kode halaqah">
+            <input name="kode_halaqah" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="kode halaqah"  value="{{$data->kode_halaqah}}">
     </div>   
 
 
@@ -138,7 +138,7 @@
 
 
 <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <a href="{{ route('halaqah.index') }}">    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></a>
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>     
 

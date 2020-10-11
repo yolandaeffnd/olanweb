@@ -1,6 +1,5 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
-        
             <li class="nav-item nav-category">
               <a class="nav-link" href="#">
                 <span class="menu-title">MENU</span>
@@ -32,7 +31,7 @@
               <div class="collapse" id="kelas">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="{{route('halaqah.index')}}">Halaqah</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{route('halaqahsantri.index')}}">Halaqah Santri</a></li>
+                  <li class="nav-item" ><a class="nav-link" id="halaqah_santri" href="{{route('halaqahsantri.index')}}">Halaqah Santri</a></li>
                 </ul>
               </div>
             </li>
@@ -55,19 +54,20 @@
               </div>
             </li>
             @endif
-             @if(Auth::user()->level == 'Admin' || Auth::user()->level == 'Pimpinan')
+             @if(Auth::user()->level!='Wakbid Kurikulum' && Auth::user()->level!='Wakbid Kesiswaan' && Auth::user()->level!='Guru'  && Auth::user()->level!='Bendahara' )
             <li class="nav-item">
               <a class="nav-link" href="{{route('guru.index')}}">
                 <span class="menu-title">Guru</span>
                 <i class="icon-user menu-icon"></i>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" >
               <a class="nav-link" href="{{route('santri.index')}}">
                 <span class="menu-title">Santri</span>
                 <i class="icon-user menu-icon"></i>
               </a>
             </li>
+            
             @endif
           @if(Auth::user()->level!='Wakbid Kurikulum' && Auth::user()->level!='Wakbid Kesiswaan' && Auth::user()->level!='Guru' )
             <li class="nav-item">
