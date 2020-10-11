@@ -67,7 +67,7 @@ $(document).ready(function(){
         <option value="">Pilih Periode</option>
        <?php $periode2 = \App\Periode2::all();  ?>
         @foreach($periode2 as $data)
-        <option value="{{$data->id_periode}}">{{$data->kode_periode}} </option>
+        <option value="{{$data->id_periode}}">{{$data->tahun_akademik}} </option>
         @endforeach
       </select>
     </div>

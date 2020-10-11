@@ -21,14 +21,11 @@
           <label for="exampleInputEmail1">Tanggal Lahir</label>
             <input name="tgl_lahir" type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"  value="{{$data->tgl_lahir}}" readonly="true">
     </div>
-   <!--  <div class="form-group">
-          <label for="exampleInputEmail1">Jenis Kelamin</label>
-            <input name="jk" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$data->jk}}">
-    </div> -->
+   
 
     <div class="form-group">
           <label for="exampleInputEmail1">Jenis Kelamin</label>
-            <input name="jk" type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"  value="{{$data->jk}}" readonly="true">
+            <input name="jk" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"  value="{{$data->jk}}" readonly="true">
     </div>
     <div class="form-group">
           <label for="exampleInputEmail1">Alamat</label>

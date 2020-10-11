@@ -7,6 +7,7 @@ use App\Santri;
 use App\Periode2;
 use App\Penempatan;
 use App\Riwayat;
+use App\HalaqahSantri;
 use Illuminate\Support\Facades\Redirect;
 use Auth;
 use Illuminate\Support\Facades\Log;
@@ -65,7 +66,6 @@ class RegistrasiController extends Controller
             'alamat' => $request->get('alamat'),
             'pendidikan' => $request->get('pendidikan'),
             'kelas' => $request->get('kelas'),
-            'jespem' => $request->get('jespem'),
             'nama_ayah' => $request->get('nama_ayah'),
             'pekerjaan_ayah' => $request->get('pekerjaan_ayah'),
             'nama_ibu' => $request->get('nama_ibu'),
@@ -158,6 +158,23 @@ class RegistrasiController extends Controller
 
           ]);
 
+            
+
+             $alldetail3= Riwayat::where('id_santri',$data->id_santri)->get();
+             foreach($alldetail3 as $d){
+                 $detail3=Riwayat::find($d->id_riwayat);
+                   $detail3->where('id_santri', $data->id_santri)
+                        ->update([
+                            'id_halaqah'=>null,
+                            'bulan'=>null,
+                            'status_pembayaran'=>null,
+                            'status_keaktifan'=>$data->status,
+                         ]);
+                    
+        
+                $detail3->save();
+            }
+
           
          
 
@@ -225,7 +242,7 @@ class RegistrasiController extends Controller
 
         $alldetail3= Riwayat::where('id_santri',$data->id_santri)->get();
              foreach($alldetail3 as $d){
-                 $detail3=Riwayat::find($d->id_santri);
+                 $detail3=Riwayat::find($d->id_riwayat);
                    $detail3->where('id_santri', $data->id_santri)
                         ->update([
                             'status_keaktifan'=>$data->status,
@@ -234,6 +251,19 @@ class RegistrasiController extends Controller
               
                 $detail3->save();
             }
+
+            $st = 'aktif';
+
+          if($data->status!=$st)
+          {
+             $halaqahsantri = HalaqahSantri::find('id_halaqah_santri')
+                              ->where('id_santri',$data->id_santri)
+                              ->delete();
+
+          }
+         
+
+
 
 
          return redirect()->route('registrasi.index');

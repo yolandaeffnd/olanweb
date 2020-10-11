@@ -97,7 +97,14 @@ class PenempatanController extends Controller
     public function edit($id)
     {
         $data = \App\Penempatan::find($id);
-        return view('penempatan2/edit', compact('data'));
+        $halaqah =DB::table('h_halaqah')
+                ->leftjoin('h_halaqah_santri','h_halaqah.id_halaqah','=',
+                            'h_halaqah_santri.id_halaqah')
+                ->select('h_halaqah.*','h_halaqah_santri.id_santri')
+                ->where('h_halaqah.id_jadwal',$data->id_jadwal)
+                ->where('h_halaqah_santri.id_santri','<','3')
+                ->get(); 
+        return view('penempatan2/edit', compact('data','halaqah'));
     }
 
     /**

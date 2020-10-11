@@ -33,21 +33,54 @@
           <label for="exampleInputEmail1">NIS</label>
             <input name="id_santri" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"  value="{{$data->santri->nis}}" readonly="true">
     </div>
-   
+ <div class="form-group">
+          <label for="exampleInputEmail1">Jenis Kelamin</label>
+            <input name="" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"  value="{{$data->santri->jk}}" readonly="true">
+    </div>   
  <div class="form-group">
           <label  for="exampleInputEmail1">Kode Halaqah</label>
    
 
       <select name="id_halaqah" class="form-control">
         <option value="">Pilih Halaqah</option>
-       <?php $halaqah = \App\Halaqah::all();  ?>
-        @foreach($halaqah as $halaqah)
+       <?php 
+
+        $halaqah_2 = \App\Halaqah::all();
+        $halaqahsantri = \App\HalaqahSantri::all();
+        
+        $hasil = [];
+        $temp3 =[];
+
+
+            $i=0;
+            foreach ($halaqahsantri as $hs)
+            {
+              
+              $temp2 = \App\HalaqahSantri::where('id_halaqah',$hs->id_halaqah)->count('id_halaqah');
+              if($temp2==3)
+              {
+                
+                $hasil[] =$halaqah_2->where('id_halaqah',$hs->id_halaqah)->get();
+              
+              } 
+
+
+            }
+
+            
+           
+
+          
+          ?>
+
+         
+        @foreach($hasil as $halaqah)
          <option 
                   value="{{$halaqah->id_halaqah}}"
                   @if ($halaqah->id_halaqah === $data->id_halaqah)
                   selected
                   @endif
-                  >{{$halaqah->kode_halaqah}}
+                  >{{$halaqah->id_halaqah}}
                 </option>
         @endforeach
       </select>

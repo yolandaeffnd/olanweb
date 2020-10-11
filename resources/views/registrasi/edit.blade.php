@@ -33,7 +33,7 @@ $(document).ready(function(){
 
 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">EDIT DATA JADWAL</h4>
+                    <h4 class="card-title">EDIT DATA REGISTRASI</h4>
 
                     <!--=====================================================================================================================================TAMBAH DATA SANTRI===================-->
 

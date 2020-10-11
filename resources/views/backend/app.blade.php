@@ -47,7 +47,8 @@
       <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="navbar-brand-wrapper d-flex align-items-center">
           <a class="navbar-brand brand-logo" href="index.html">
-            <img src="{{asset('assets/images/logo.svg')}}" alt="logo" class="logo-dark" />
+            <!-- <img src="{{asset('assets/images/simaq.png')}}" alt="logo" class="logo-dark" /> -->
+           <font color="success"><h1>SIMAQ</h1></font>
           </a>
           <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{{asset('assets/images/logo-mini.svg')}}" alt="logo" /></a>
         </div>

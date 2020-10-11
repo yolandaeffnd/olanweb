@@ -56,6 +56,7 @@ class GuruController extends Controller
 
         $data = Guru::create([
         'nama_guru' => $request->get('nama_guru'),
+        'nip' => $request->get('nip'),
         'tgl_lahir' => $request->get('tgl_lahir'),
         'jk' => $request->get('jk'),
         'alamat' => $request->get('alamat'),

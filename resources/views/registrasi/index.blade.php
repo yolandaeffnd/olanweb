@@ -48,7 +48,11 @@
                         @foreach($datas as $data)
                         <tr>
                           <td><b>{{++$i}}.</b></td>
-                          <td>{{$data->tipe}}</td>
+                           @if($data->tipe=='Baru')
+                           <td><button class="btn btn-sm btn-rounded btn-primary">{{$data->tipe}}</button></td>
+                        @else
+                         <td><button class="btn btn-sm btn-rounded btn-warning">{{$data->tipe}}</button></td>
+                        @endif
                        <!--    <td>{{$data->panggilan}}</td> -->
     
                          <td>{{$data->periode2->kode_periode}}</td>

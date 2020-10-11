@@ -4,8 +4,10 @@
 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">DATA BEASISWA</h4>
+                @if(Auth::user()->level != 'Bendahara' && Auth::user()->level!='Wakbid Kurikulum' && Auth::user()->level!='Guru' && Auth::user()->level!='Admin' && Auth::user()->level!='Pimpinan')
                 <button data-toggle="modal" data-target="#staticBackdrop" class="btn ml-lg-auto download-button btn-success btn-sm my-1 my-sm-0"><i class="fa fa-plus"></i>  Tambah Data </a></button>
               </div>
+              @endif
     <div class="card-body">
     <table class="table table-striped table-bordered" id="datatables">    
             
@@ -66,6 +68,7 @@
                           <td>{{$data->totjuz}}</td>
                           <td>{{$data->username}}</td>
                           <td>{{$data->password}}</td> -->
+                           @if(Auth::user()->level != 'Bendahara' && Auth::user()->level!='Wakbid Kurikulum' && Auth::user()->level!='Guru' && Auth::user()->level!='Admin' && Auth::user()->level!='Pimpinan')
                            <td>
 
 
@@ -78,6 +81,7 @@
             @method('DELETE')
             <button type="submit" class="btn btn-sm btn-danger btn-xs" onclick="return confirm('Anda yakin ingin menghapus data ini?')"><i class="fa icon-trash"></i></button></form>  
                            </td>
+                           @endif
                           
                         </tr>
                         @endforeach
@@ -85,6 +89,7 @@
                     </table>
                   </div>
                 </div>
+              </div>
 
 <!-- ===================================================================================================================================================================TAMBAH ISI DATA TEMPAT=========================================================
 

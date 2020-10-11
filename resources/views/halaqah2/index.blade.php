@@ -62,7 +62,7 @@
 
                              <form action="{{route('halaqah.destroy', $data)}}" method="post"> 
             <a href="{{route('halaqah.edit', $data)}}" class="btn btn-primary btn-xs"><i class="fa  icon-pencil"></i></a>   
-             <a href="{{route('halaqah.show', $data)}}" class="btn btn-warning btn-xs"><i class="fa   icon-magnifier"></i></a>   
+            
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-sm btn-danger btn-xs" onclick="return confirm('Anda yakin ingin menghapus data ini?')"><i class="fa icon-trash"></i></button></form>  
