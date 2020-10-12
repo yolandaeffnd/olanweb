@@ -143,8 +143,30 @@ class PertemuanController extends Controller
      */
     public function destroy($id)
     {
-    $data = \App\Pertemuan::find($id);
-    $data->delete();
+        $data = \App\Pertemuan::all();
+        
+        
+       $pertemuan = Pertemuan::select('id_pertemuan_kelas')->where('id_pertemuan',$id)->first();
+       $hq = Pertemuan::select('id_halaqah')->where('id_pertemuan',$id)->first();
+
+         $hqq=$hq->id_halaqah;
+
+        $temp = $pertemuan->id_pertemuan_kelas;
+        $b = $temp +1;
+        foreach ($data as $d) {
+            $result = Pertemuan::find($d->id_pertemuan);
+            $result->where('id_pertemuan_kelas',$b)
+                ->where('id_halaqah',$hqq)
+                ->update([
+                        'id_pertemuan_kelas' => $temp,
+                    ]);
+            $result->save();
+        }
+    
+          
+        $datas = \App\Pertemuan::find($id);
+        $datas->delete();
+
      return redirect()->route('pertemuan.index')->with('success', 'Data berhasil dihapus!');
     }
 }

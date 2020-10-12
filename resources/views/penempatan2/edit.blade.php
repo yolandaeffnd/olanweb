@@ -45,7 +45,9 @@
         <option value="">Pilih Halaqah</option>
        <?php 
 
-        $halaqah_2 = \App\Halaqah::all();
+        
+            
+           $halaqah_2 = \App\Halaqah::all();
         $halaqahsantri = \App\HalaqahSantri::all();
         
         $hasil = [];
@@ -58,7 +60,7 @@
               
               $temp2 = $halaqahsantri->where('id_halaqah',$hq->id_halaqah)->count('id_santri');   
 
-              if($temp2>=3)
+              if($temp2<3)
               {
                 
                 $hasil[] =\App\Halaqah::select('id_halaqah')->where('id_halaqah',$hq->id_halaqah)->first();
@@ -68,31 +70,35 @@
 
 
             }
-            
 
-            if(!empty($hasil))
+             if(!empty($hasil))
             {
-                foreach ($halaqah_2 as $ht) 
-                {
-                  foreach ($hasil as $hs) {
-                     $santri = DB::table('h_halaqah')->where('id_halaqah','!=',$hs->id_halaqah)
-                      ->where('id_jadwal',$data->id_jadwal)->where('jk',$data->santri->jk)->get();
+                
+                    foreach ($hasil as $hs) {
+
+                         $temp = \App\Halaqah::where('id_halaqah',$hs->id_halaqah)
+                            ->where('id_jadwal',$data->id_jadwal)
+                            ->where('jk',$data->santri->jk)->first();
+                          if(!empty($temp))
+                          {
+                             $santri[] = \App\Halaqah::where('id_halaqah',$hs->id_halaqah)
+                            ->first();
+                          }
+                       
+
+                                             
                   }
-                 
-                }
-            }else{
-                $santri = DB::table('h_halaqah')->where('id_jadwal',$data->id_jadwal)->where('jk',$data->santri->jk)->get();
+              
             }
-            
-          
+
+
           
           ?>
 
-         
         @foreach($santri as $halaqah)
          <option 
                   value="{{$halaqah->id_halaqah}}"
-                  @if ($halaqah->id_halaqah === $data->id_halaqah)
+                  @if ($halaqah->id_halaqah == $data->id_halaqah)
                   selected
                   @endif
                   >{{$halaqah->kode_halaqah}}

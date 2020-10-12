@@ -4,7 +4,9 @@
 <div class="card">
                   <div class="card-header">
                     <h4 class="card-title">DATA PEMBAYARAN SPP</h4>
+                      @if(Auth::user()->level != 'Wakbid Kesiswaan' && Auth::user()->level!='Wakbid Kurikulum' && Auth::user()->level!='Pimpinan' && Auth::user()->level!='Guru' && Auth::user()->level!='Admin')
                    <a href="{{route('pembayaran.create')}}" class="btn ml-lg-auto download-button btn-success btn-sm my-1 my-sm-0">Tambah Data</a>
+                   @endif
                  </div>
 <div class="card-body">
      <table class="table table-striped table-bordered" id="datatables">    

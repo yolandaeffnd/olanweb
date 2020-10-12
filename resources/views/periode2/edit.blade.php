@@ -13,12 +13,12 @@
 
 
 
-  <form method="POST" action="{{ route('periode.update', $data) }}">
+  <form method="POST" action="{{ route('periode2.update', $data) }}">
         {{ csrf_field() }}
             {{ method_field('put') }}
      <div class="form-group">
           <label for="exampleInputEmail1">Kode periode</label>
-            <input name="kode_periode" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="kode periode">
+            <input name="kode_periode" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="kode periode" value="{{$data->kode_periode}}">
     </div>   
     <div class="form-group">
           <label for="exampleInputEmail1">Semester</label>
@@ -55,17 +55,20 @@
                             </div>
                           </div>
 
+      <div class="modal-footer">
+      <a href={{route('periode2.index')}}  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></a>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+
+
 
 </form>
 </div>
 
 </div>
-</div>
-</div>  
 
+               
 
-                </div>
-            </div>
 
 
 @stop

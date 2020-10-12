@@ -97,7 +97,6 @@ class PenempatanController extends Controller
     public function edit($id)
     {
         $data = \App\Penempatan::find($id);
-       
         return view('penempatan2/edit', compact('data'));
     }
 
@@ -119,6 +118,8 @@ class PenempatanController extends Controller
          $data->id_pembelajaran_periode = $request->input('id_pembelajaran_periode');
          // $data->tgl_regis = $request->input('tgl_regis');
          $data->tgl_mulai = $request->input('tgl_mulai');
+
+
            if( $request->input('tgl_mulai')!==null&&$data->status=='menunggu')
             {
                  $data->status ='ditempatkan';

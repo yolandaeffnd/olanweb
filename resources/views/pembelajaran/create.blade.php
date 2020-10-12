@@ -82,18 +82,23 @@ $(document).ready(function(){
     $nip = Auth::user()->nip;
     $guru = \App\Guru::select('id_pegawai')->where('nip',$nip)->first();
 
-    $halaqah = \App\Halaqah::('id_halaqah')->where('id_pegawai',$guru)->first(); 
+    // $getGuru= $guru->id_pegawai;
+    
+    $halaqah = \App\Halaqah::select('id_halaqah')->where('id_pegawai',$guru)->first();
 
-    $santri = \App\HalaqahSantri::select('id_santri')->where('id_halaqah',$halaqah)->get();
+    // $getHalaqah=$halaqah->id_halaqah; 
 
+    $santri = DB::table('santri')
+          ->leftjoin('h_halaqah_santri','santri.id_santri','=','h_halaqah_santri.id_santri')
+          ->select('santri.*','h_halaqah_santri.id_halaqah')
+          ->where('h_halaqah_santri.id_halaqah',$halaqah)->get();
      ?>
-
      <div class="form-group">
           <label  for="exampleInputEmail1">Santri</label>
       <select name="id_santri" class="form-control">
         <option value="">Pilih Santri</option>
         @foreach($santri as $data)
-        <option value="{{$data->id_santri}}">{{$data->santri->nama_santri}} </option>
+        <option value="{{$data->id_santri}}">{{$data->nama_santri}} </option>
         @endforeach
       </select>
     </div>

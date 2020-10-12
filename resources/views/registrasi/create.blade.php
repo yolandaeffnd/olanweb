@@ -65,7 +65,7 @@ $(document).ready(function(){
           <label  for="exampleInputEmail1">Periode</label>
       <select name="id_periode" class="form-control">
         <option value="">Pilih Periode</option>
-       <?php $periode2 = \App\Periode2::all();  ?>
+       <?php $periode2 = \App\Periode2::where('status','aktif')->get();  ?>
         @foreach($periode2 as $data)
         <option value="{{$data->id_periode}}">{{$data->tahun_akademik}} </option>
         @endforeach

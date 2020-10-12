@@ -48,7 +48,7 @@ class Periode2Controller extends Controller
         'tahun_akademik' => $request->get('tahun_akademik'),
         'tahun' => $request->get('tahun'),
         'tgl_mulai' => $request->get('tgl_mulai'),
-        'status' => $request->get('aktif'),
+        'status' => $request->get('status'),
         
         ]);
         return redirect('/periode2')->with('sukses','data berhasil ditambahkan');
