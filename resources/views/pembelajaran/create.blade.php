@@ -82,16 +82,18 @@ $(document).ready(function(){
     $nip = Auth::user()->nip;
     $guru = \App\Guru::select('id_pegawai')->where('nip',$nip)->first();
 
-    // $getGuru= $guru->id_pegawai;
-    
+    $getGuru= $guru->id_pegawai;
+
     $halaqah = \App\Halaqah::select('id_halaqah')->where('id_pegawai',$guru)->first();
 
-    // $getHalaqah=$halaqah->id_halaqah; 
+    $getHalaqah=$halaqah->id_halaqah; 
 
     $santri = DB::table('santri')
           ->leftjoin('h_halaqah_santri','santri.id_santri','=','h_halaqah_santri.id_santri')
           ->select('santri.*','h_halaqah_santri.id_halaqah')
           ->where('h_halaqah_santri.id_halaqah',$halaqah)->get();
+
+          
      ?>
      <div class="form-group">
           <label  for="exampleInputEmail1">Santri</label>
