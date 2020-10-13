@@ -70,7 +70,7 @@
                     <tr>      
                       <th>NO</th>
                       <th>PERTEMUAN</th>
-                
+                      <th>NAMA</th>
                      
                       <th>TANGGAL</th>
                       <th>JUZ MULAI</th>
@@ -94,6 +94,8 @@
                           <td><b>{{++$i}}.</b></td>
                           <td>{{$data->id_pertemuan}}</t>
                          
+                         <td>{{$data->santri->nama_santri}}</t>
+                          
                          <td>{{$data->tgl}}</td>
                          <td>{{$data->id_juz_mulai}}</td>
                          <td>{{$data->id_juz_selesai}}</td>

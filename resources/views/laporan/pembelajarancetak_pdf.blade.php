@@ -40,23 +40,13 @@
 <tr style="font-size: 18px; font-weight: bold">
 <td width="20%">Nis / Nama</td><td width="50%"> : <?php echo  $nis?> / <?php echo $nama?></td>
 </tr>
-@if(!empty($hqq))
-@foreach($hqq as $h)
+
 <tr style="font-size: 18px; font-weight: bold">
 <td width="20%">Nama Guru</td><td width="50%"> : {{$h->namapengajar}}</td>
 </tr>
 <tr style="font-size: 18px; font-weight: bold">
 <td width="20%">Halaqah</td><td width="50%"> : {{$h->kode_halaqah}}</td>
 </tr>
-@endforeach
-@else
-<tr style="font-size: 18px; font-weight: bold">
-<td width="20%">Nama Guru</td><td width="50%"> : </td>
-</tr>
-<tr style="font-size: 18px; font-weight: bold">
-<td width="20%">Halaqah</td><td width="50%"> : </td>
-</tr>
-@endif
 <br>
 </table>
 <table style="width: 100%" border="1" border-collapse: collapse; borderspacing="0" cellpadding="2">
@@ -64,8 +54,6 @@
                     <tr>      
                       <th>NO</th>
                       <th>PERTEMUAN</th>
-                
-                     
                       <th>TANGGAL</th>
                       <th>JUZ MULAI</th>
                       <th>JUZ SELESAI</th>
@@ -92,12 +80,7 @@
                          <td>{{$data->id_juz_mulai}}</td>
                          <td>{{$data->id_juz_selesai}}</td>
                          <td>{{$data->total_juz}}</td>
-                        
-                          
-                          
-                          
-                      
-                         
+  
                           
                         </tr>
                         @endforeach
@@ -105,29 +88,8 @@
   </table>
   <br><br>
  <table>
-@if(!empty($c1))
-@foreach($c1 as $r)
-<tr style="font-size: 16px; font-weight: bold">
-<td width="10%">Total Juz Keseluruhan</td><td>:</td><td>{{$r->total_juz}}</td>
-  </tr>
-  <tr style="font-size: 16px; font-weight: bold">
-<td width="10%">Total Pertemuan</td><td>:</td><td>{{$r->total_pertemuan}}</td>
-</tr>
-<tr style="font-size: 16px; font-weight: bold">
-<td width="10%">Total Hadir</td><td>:</td><td>{{$r->total_hadir}}</td>
-</tr>
-<tr style="font-size: 16px; font-weight: bold">
-<td width="10%">Total Sakit/Izin</td><td>:</td><td>{{$r->total_sakit}}</td>
-<tr style="font-size: 16px; font-weight: bold">
-<td width="10%">Total Alfa</td><td>:</td><td>{{$r->total_alfa}}</td>
-</tr>
-@endforeach
-@else
-<tr style="font-size: 16px; font-weight: bold">
-<td></td>
-</tr>
-@endif
-		
+		<tr style="font-size: 16px; font-weight: bold">
+
 		<br><br><br><br>
  </table>
    <table style="font-weight: bold;" align="right">

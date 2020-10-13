@@ -27,7 +27,7 @@
             </div>
             <!-- Quick Action Toolbar Ends-->
              <div class="row">
-              <div class="col-md-8 grid-margin">
+              <div class="col-md-12 grid-margin">
                 <div class="card">
                   <div class="card-header d-block d-md-flex">
                     <h5 class="mb-0 center">Agenda Kegiatan</h5>
@@ -37,7 +37,7 @@
                     
                     <ul class="list-ticked scroll">
                      <?php $i=0;
-                        $agenda = \App\Agenda::all(); 
+                       $agenda= \App\Agenda::orderBy('tgl','desc')->get();
                         $b = Carbon\Carbon::today();?>
                         @foreach($agenda as $data2)
                      <h5><li>{{$data2->judul}}
@@ -53,16 +53,18 @@
                   
                 </div>
               </div>
+            </div>
     @if(Auth::user()->level != 'Wakbid Kesiswaan' && Auth::user()->level!='Wakbid Kurikulum' && Auth::user()->level!='Bendahara' && Auth::user()->level!='Guru' && Auth::user()->level!='Admin')
-              <div class="col-md-4 grid-margin stretch-card">
+    <div class="row">
+               <div class="col-md-4 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                      <div id="jsantri"></div>
                   </div>
                 </div>
               </div>
-            <div class="row">
-              <div class="col-md-12 grid-margin stretch-card">
+            
+               <div class="col-md-8 grid-margin stretch-card">
                 <div class="card">
                   <div id="csantri">
 
@@ -70,10 +72,11 @@
 
             </div>
           </div>
-        </div>  
+        </div>
       @endif
 
-      </div>
+
+     
 
                   
 

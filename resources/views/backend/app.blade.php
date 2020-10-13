@@ -66,6 +66,11 @@
                 @endif
                 <span class="font-weight-normal">  {{ Auth::user()->nama }}</span></a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+                <div class="dropdown-header text-center">
+                
+                  <p class="mb-1 mt-3"><b>{{ Auth::user()->nama }}</b></p>
+                  <p class="font-weight-light text-muted mb-0">{{ Auth::user()->level }}</p>
+                </div>
                <a class="dropdown-item" href="{{route('user.edit',Auth::user()->id)}}"><i class="dropdown-item-icon icon-user text-primary"></i> My Profile</a>
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="dropdown-item-icon icon-power text-primary"></i>Sign Out</a>
 

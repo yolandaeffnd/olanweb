@@ -35,12 +35,13 @@ class LaporanController extends Controller
 			$status = $request->query('status');
             $tahun = Carbon::parse($request->query('tahun'))->format('Y');
             $bulan = Carbon::parse($request->query('bulan'))->format('m');
-            $datas = Registrasi::whereYear('tgl',$tahun)->whereMonth('tgl',$bulan)->where('status',$status)->get();
-            
-           
+            $datas = DB::table('h_registrasi')->whereYear('tgl',$tahun)->whereMonth('tgl',$bulan)->where('status',$status)->get();
+         
+            dd($datas);
         }
         else{
             $datas = Registrasi::all();
+           
            
         }
           return view('laporan.regis2',array('datas'=>$datas));
@@ -107,6 +108,7 @@ class LaporanController extends Controller
 
 
 			}
+              dd($datas);
 		
         }
         else{
@@ -232,7 +234,7 @@ class LaporanController extends Controller
         }
         else{
             $datas = HalaqahSantri::all();
-            $halaqah ="-";
+            $hq ="-";
            
         }
         $today = Carbon::now()->format('d-m-Y');
@@ -318,7 +320,7 @@ class LaporanController extends Controller
         if(!empty($request->query('id_santri'))&& !empty($request->query('id_halaqah'))) {
             $santri = $request->query('id_santri');
             $halaqah = $request->query('id_halaqah');
-            $result5 = DB::table('h_halaqah')
+            $hqq = DB::table('h_halaqah')
                     ->join('pegawai', 'h_halaqah.id_pegawai', '=', 'pegawai.id_pegawai')
                     ->select('h_halaqah.*','pegawai.nama_guru as namapengajar')
                     ->where('h_halaqah.id_halaqah',$halaqah)->get();
@@ -348,7 +350,7 @@ class LaporanController extends Controller
             $datas = Pembelajaran::all();
             $nama="-";
             $nis="-";
-            $c1="-";
+            $c1="";
             $hqq="";
            
                        

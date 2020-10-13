@@ -84,14 +84,14 @@ $(document).ready(function(){
 
     $getGuru= $guru->id_pegawai;
 
-    $halaqah = \App\Halaqah::select('id_halaqah')->where('id_pegawai',$guru)->first();
+    $halaqah = \App\Halaqah::select('id_halaqah')->where('id_pegawai',$getGuru)->first();
 
     $getHalaqah=$halaqah->id_halaqah; 
 
     $santri = DB::table('santri')
           ->leftjoin('h_halaqah_santri','santri.id_santri','=','h_halaqah_santri.id_santri')
           ->select('santri.*','h_halaqah_santri.id_halaqah')
-          ->where('h_halaqah_santri.id_halaqah',$halaqah)->get();
+          ->where('h_halaqah_santri.id_halaqah',$getHalaqah)->get();
 
           
      ?>
