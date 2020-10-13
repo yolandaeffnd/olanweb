@@ -18,12 +18,13 @@
                       <th>JUMLAH PEMBAYARAN</th>
                       <th>BULAN BERLAKU</th>
                       <th>PERIODE BERLAKU</th>
+                        @if(Auth::user()->level != 'Bendahara' && Auth::user()->level!='Wakbid Kurikulum' && Auth::user()->level!='Guru' && Auth::user()->level!='Admin' && Auth::user()->level!='Pimpinan')
                       <th>STATUS</th>
+                      @endif
                          
                      
                      
-                      
-            
+                    
                       <th>Aksi</th>
                       
                       
@@ -48,32 +49,16 @@
                           <td>{{$data->jumlah_pembayaran_spp}}</td>
                            <td>{{$data->bulan_berlaku}}</td>
                           <td>{{$data->id_periode}}</td>
-                          <td>{{$data->status_beasiswa}}</td>
+                        
                           @if($data->status_beasiswa=='aktif')
-                           <td><button class="btn btn-sm btn-rounded btn-primary">{{$data->status}}</button></td>
-                        @elseif($data->status_beasiswa=='tidak_aktif')
-                         <td><button class="btn btn-sm btn-rounded btn-danger">nonaktif</button></td>
-                         @endif
-                          
-                        <!--   <td>{{$data->pendidikan}}</td>
-                          <td>{{$data->kelas}}</td>
-                          <td>{{$data->jespem}}</td>
-                          <td>{{$data->nama_ayah}}</td>
-                          <td>{{$data->pekerjaan_ayah}}</td>
-                          <td>{{$data->nama_ibu}}</td>
-                          <td>{{$data->pekerjaan_ibu}}</td> -->
-
-                
-                        <!--   <td>{{$data->tujuan_masuk}}</td>
-                          <td>{{$data->totjuz}}</td>
-                          <td>{{$data->username}}</td>
-                          <td>{{$data->password}}</td> -->
-                           @if(Auth::user()->level != 'Bendahara' && Auth::user()->level!='Wakbid Kurikulum' && Auth::user()->level!='Guru' && Auth::user()->level!='Admin' && Auth::user()->level!='Pimpinan')
+                           <td><button class="btn btn-sm btn-rounded btn-primary">{{$data->status_beasiswa}}</button></td>
+                          @elseif($data->status_beasiswa=='tidak_aktif')
+                           <td><button class="btn btn-sm btn-rounded btn-danger">nonaktif</button></td>
+                           @endif
+                     
+                       @if(Auth::user()->level != 'Bendahara' && Auth::user()->level!='Wakbid Kurikulum' && Auth::user()->level!='Guru' && Auth::user()->level!='Admin' && Auth::user()->level!='Pimpinan')
+                         
                            <td>
-
-
-
-
                              <form action="{{route('beasiswa.destroy', $data)}}" method="post"> 
             <a href="{{route('beasiswa.edit', $data)}}" class="btn btn-primary btn-xs"><i class="fa  icon-pencil"></i></a>   
              <a href="{{route('beasiswa.show', $data)}}" class="btn btn-warning btn-xs"><i class="fa   icon-magnifier"></i></a>   
@@ -82,7 +67,6 @@
             <button type="submit" class="btn btn-sm btn-danger btn-xs" onclick="return confirm('Anda yakin ingin menghapus data ini?')"><i class="fa icon-trash"></i></button></form>  
                            </td>
                            @endif
-                          
                         </tr>
                         @endforeach
                       </tbody>

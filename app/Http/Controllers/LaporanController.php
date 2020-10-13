@@ -154,6 +154,7 @@ class LaporanController extends Controller
             $datas = Santri::all();
             $periode ="-";
             $jk="-";
+            $pr="-";
         }
            
       
@@ -317,10 +318,11 @@ class LaporanController extends Controller
         if(!empty($request->query('id_santri'))&& !empty($request->query('id_halaqah'))) {
             $santri = $request->query('id_santri');
             $halaqah = $request->query('id_halaqah');
-            $hqq = DB::table('h_halaqah')
+            $result5 = DB::table('h_halaqah')
                     ->join('pegawai', 'h_halaqah.id_pegawai', '=', 'pegawai.id_pegawai')
                     ->select('h_halaqah.*','pegawai.nama_guru as namapengajar')
                     ->where('h_halaqah.id_halaqah',$halaqah)->get();
+        
 
             // $result = DB::table('pegawai')->select('nama_guru')->where('id_halaqah',$halaqah)->first();
             // $hq = $result->nama_guru;
@@ -344,10 +346,12 @@ class LaporanController extends Controller
         }
         else{
             $datas = Pembelajaran::all();
-            $nama="";
-            $nis="";
-            $c1="";
+            $nama="-";
+            $nis="-";
+            $c1="-";
+            $hqq="";
            
+                       
         }
 
         

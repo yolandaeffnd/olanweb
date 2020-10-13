@@ -38,16 +38,10 @@
 		 </center><br><br>
          <table width="100%">
 <tr style="font-size: 18px; font-weight: bold">
-<td width="20%">Nis / Nama</td><td>:</td><td width="50%"><?php echo  $nis?> / <?php echo $nama?></td>
+<td width="20%">Nis / Nama</td><td width="50%"> : <?php echo  $nis?> / <?php echo $nama?></td>
 </tr>
 
-<tr style="font-size: 18px; font-weight: bold">
-@foreach($hqq as $h)
-<td width="10%">Guru</td><td>:</td><td>{{$h->namapengajar}}</td>
-<td width="10%">Halaqah</td><td>:</td><td>{{$h->kode_halaqah}}</td>
-@endforeach
 
-</tr>
 <br>
 </table>
 <table style="width: 100%" border="1" border-collapse: collapse; borderspacing="0" cellpadding="2">
