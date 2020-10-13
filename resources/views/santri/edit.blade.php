@@ -8,7 +8,7 @@
         height : 300px;
         }
      </style>
-
+     
 <div class="card">
                   <div class="card-header">
                     <h4 class="card-title">EDIT DATA SANTRI</h4>
@@ -78,21 +78,7 @@
             <input name="jespem" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$data->jespem}}">
     </div> -->
 
-    <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Jenis Pembelajaran</label>
-                            <div class="col-sm-4">
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input type="radio" class="form-check-input" name="jespem" id="jespem" value="Iqro" {{$data->jespem === "Iqro" ? "checked" : ""}} > Iqra <i class="input-helper"></i></label>
-                              </div>
-                            </div>
-                            <div class="col-sm-5">
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input type="radio" class="form-check-input" name="jespem" id="jespem" value="Alquran" {{$data->jespem === "Alquran" ? "checked" : ""}} > Alquran <i class="input-helper"></i></label>
-                              </div>
-                            </div>
-                          </div>
+    
 
 
 
@@ -153,8 +139,7 @@
 </div>  
 
 
-                </div>
-            </div>
+              
 
 
 @stop
