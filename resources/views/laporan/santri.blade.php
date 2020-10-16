@@ -30,6 +30,7 @@
           <label for="exampleInputEmail1">Jenis Kelamin</label>
             <select name="jk" class="form-control" id="jk">
                 <option value="">-Pilih Jenis Kelamin-</option>
+                <option value="semua">Semua</option>
                 <option value="Laki-laki">Laki-laki</option>
                 <option value="Perempuan">Perempuan</option>
           
@@ -41,7 +42,7 @@
             <select name="status" class="form-control" id="status">
                 <option value="">-Pilih Status-</option>
                 <option value="1">Beasiswa</option>
-                <option value="2">Reguler</option>
+                <option value="2">Semua</option>
           
             </select>
     </div>

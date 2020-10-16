@@ -35,9 +35,19 @@ class LaporanController extends Controller
 			$status = $request->query('status');
             $tahun = Carbon::parse($request->query('tahun'))->format('Y');
             $bulan = Carbon::parse($request->query('bulan'))->format('m');
-            $datas = DB::table('h_registrasi')->whereYear('tgl',$tahun)->whereMonth('tgl',$bulan)->where('status',$status)->get();
+            if($status=='semua')
+            {
+                $datas = Registrasi::whereYear('tgl',$tahun)->whereMonth('tgl',$bulan)->get();
          
-            dd($datas);
+            }
+            else{
+
+                $datas = Registrasi::whereYear('tgl',$tahun)->whereMonth('tgl',$bulan)->where('status',$status)->get();
+         
+            }
+           
+         
+           
         }
         else{
             $datas = Registrasi::all();
@@ -57,8 +67,16 @@ class LaporanController extends Controller
 			$status = $request->query('status');
             $tahun = Carbon::parse($request->query('tahun'))->format('Y');
             $bulan = Carbon::parse($request->query('bulan'))->format('m');
-            $datas = Registrasi::whereYear('tgl',$tahun)->whereMonth('tgl',$bulan)->where('status',$status)->get();
+            if($status=='semua')
+            {
+                $datas = Registrasi::whereYear('tgl',$tahun)->whereMonth('tgl',$bulan)->get();
          
+            }
+            else{
+
+                $datas = Registrasi::whereYear('tgl',$tahun)->whereMonth('tgl',$bulan)->where('status',$status)->get();
+         
+            }
          
 
            
@@ -88,10 +106,31 @@ class LaporanController extends Controller
 			$periode = $request->query('id_periode');
 			$jk = $request->query('jk');
 
-			$a ='aktif';
+            $a ='aktif';
+            
+            if($jk=='semua')
+            {
+                if($status==2)
+			    {
+				  $datas = DB::table('santri')
+		            ->join('h_registrasi', 'santri.id_santri', '=', 'h_registrasi.id_santri')
+		            ->select('santri.*', 'h_registrasi.id_periode')
+		            ->where('h_registrasi.id_periode',$periode)
+		            ->distinct('santri.id_santri','h_registrasi.id_periode')->get();
 
-			if($status==2)
-			{
+
+		           
+			    }
+    			else{
+
+				  $datas = Beasiswa::where('id_periode',$periode)->where('status_beasiswa',$a)->groupBy('id_santri');
+
+
+			    }
+            
+            }else{
+                if($status==2)
+			    {
 				  $datas = DB::table('santri')
 		            ->join('h_registrasi', 'santri.id_santri', '=', 'h_registrasi.id_santri')
 		            ->select('santri.*', 'h_registrasi.id_periode')
@@ -101,14 +140,15 @@ class LaporanController extends Controller
 
 
 		           
-			}
-			else{
+			    }
+    			else{
 
 				  $datas = Beasiswa::where('id_periode',$periode)->where('status_beasiswa',$a)->groupBy('id_santri');
 
 
-			}
-              dd($datas);
+			    }
+            }
+			  
 		
         }
         else{
@@ -134,22 +174,47 @@ class LaporanController extends Controller
        		 	
 
 			$a ='aktif';
-			if($status==2)
-			{
+            if($jk=='semua')
+            {
+                if($status==2)
+			    {
+				  $datas = DB::table('santri')
+		            ->join('h_registrasi', 'santri.id_santri', '=', 'h_registrasi.id_santri')
+		            ->select('santri.*', 'h_registrasi.id_periode')
+		            ->where('h_registrasi.id_periode',$periode)
+		            ->distinct('santri.id_santri','h_registrasi.id_periode')->get();
+
+
+		           
+			    }
+    			else{
+
+				  $datas = Beasiswa::where('id_periode',$periode)->where('status_beasiswa',$a)->groupBy('id_santri');
+
+
+			    }
+            
+            }else{
+                if($status==2)
+			    {
 				  $datas = DB::table('santri')
 		            ->join('h_registrasi', 'santri.id_santri', '=', 'h_registrasi.id_santri')
 		            ->select('santri.*', 'h_registrasi.id_periode')
 		            ->where('santri.jk',$jk)
 		            ->where('h_registrasi.id_periode',$periode)
 		            ->distinct('santri.id_santri','h_registrasi.id_periode')->get();
+
+
 		           
-			}
-			else{
+			    }
+    			else{
 
 				  $datas = Beasiswa::where('id_periode',$periode)->where('status_beasiswa',$a)->groupBy('id_santri');
 
-			}
-		
+
+			    }
+            }
+			
         }
         else{
 

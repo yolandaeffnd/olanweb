@@ -11,7 +11,7 @@ class Periode2 extends Model
 	   protected $fillable = ['kode_periode','semester','tahun_akademik','tahun','tgl_mulai','aktif'];
 
 
-	   public function registrasi()
+public function registrasi()
 {
 	return $this->hasMany(Registrasi::class);
 }

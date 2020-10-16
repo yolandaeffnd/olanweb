@@ -12,7 +12,7 @@
 <div class="card-body">
     <!-- <a href="{{route('registrasi.create')}}" class="btn ml-lg-auto download-button btn-success btn-sm my-1 my-sm-0">Tambah Data</a> -->
 
-      <form method="" action="">
+      <form method="POST" action="">
         @csrf
   <div class="row">
      <div class="form-group col-md-4">
@@ -51,7 +51,7 @@
     <div class="form-group col-md-4">
           <label for="exampleInputEmail1">Status</label>
             <select name="status" class="form-control" id="status">
-                <option value="semua">semua</option>
+                <option value="">semua</option>
                 <option value="aktif">Aktif</option>
                 <option value="tidak aktif">Tidak Aktif</option>
             </select>
@@ -81,7 +81,7 @@
         <div class="card-body">
 		<table class="table table-striped table-bordered" id="datatables">    
             
-    <thead>
+                    <thead>
                     <tr>      
                       <th>NO</th>
                       <th>TIPE</th>
@@ -91,18 +91,21 @@
                       <th>NAMA SANTRI</th>
                       
                          <th>JADWAL</th>
-                            
+                            <th>STATUS</th>
                           
                       
                     </tr>
                   </thead>
-          
-              <tbody>
-                                <?php $i=0;?>
-                                                  
+                                   
+
+                   <!--    BAGIAN BODY TABEL -->
+
+
+                      <tbody>
+                        <?php $x=0;?>      
                       @foreach($datas as $data)
                         <tr>
-                          <td><b>{{++$i}}.</b></td>
+                          <td><b>{{++$x}}.</b></td>
                           <td>{{$data->tipe}}</td>
                      
                          <td>{{$data->periode2->kode_periode}}</td>
@@ -114,7 +117,11 @@
                              @if(!empty($data->jadwal->id_jadwal))
                            <td>{{$data->jadwal->kode_jadwal}}</td>
                            @endif
-                        
+                          @if($data->status=='aktif')
+                           <td><button class="btn btn-sm btn-rounded btn-success">{{$data->status}}</button></td>
+                        @else
+                         <td><button class="btn btn-sm btn-rounded btn-danger">{{$data->status}}</button></td>
+                        @endif
                           
                         </tr>
                         @endforeach

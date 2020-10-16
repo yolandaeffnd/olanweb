@@ -36,7 +36,7 @@
                           <td><b>{{++$i}}.</b></td>
                           <td>{{$data->judul}}</td>
                           <td>{{$data->tgl}}</td>
-                          <td>{{$data->deskripsi}}</td>
+                          <td>{{str_limit($data->deskripsi,15)}}</td>
       
                            <td>
 
@@ -45,7 +45,7 @@
 
                              <form action="{{route('agenda.destroy', $data)}}" method="post"> 
             <a href="{{route('agenda.edit', $data)}}" class="btn btn-primary btn-xs"><i class="fa  icon-pencil"></i></a>   
-           
+            <a href="{{route('agenda.show', $data)}}" class="btn btn-warning btn-xs"><i class="fa   icon-magnifier"></i></a>   
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-sm btn-danger btn-xs" onclick="return confirm('Anda yakin ingin menghapus data ini?')"><i class="fa icon-trash"></i></button></form>  

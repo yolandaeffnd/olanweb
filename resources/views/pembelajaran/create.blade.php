@@ -67,16 +67,6 @@ $(document).ready(function(){
         @endforeach
       </select>
     </div>
-      <div class="form-group">
-          <label  for="exampleInputEmail1">Guru</label>
-      <select name="id_pegawai" class="form-control">
-        <option value="">Pilih Guru</option>
-       <?php $guru = \App\Guru::all();  ?>
-        @foreach($guru as $data)
-        <option value="{{$data->id_pegawai}}">{{$data->nama_guru}} </option>
-        @endforeach
-      </select>
-    </div>
 
   <?php 
     $nip = Auth::user()->nip;
@@ -95,6 +85,25 @@ $(document).ready(function(){
 
           
      ?>
+    <!-- <div class="form-group">
+          <label  for="exampleInputEmail1">Guru</label>
+      <select name="id_pegawai" class="form-control">
+        <option value="">Pilih Guru</option>
+       <?php $guru = \App\Guru::all();  ?>
+        @foreach($guru as $data)
+        <option value="{{$data->id_pegawai}}">{{$data->nama_guru}} </option>
+        @endforeach
+      </select>
+    </div> -->
+
+    <div class="form-group">
+    <div class="form-group">
+    @foreach($guru as $gt)
+          <input name="id_pegawai" type="text" class="form-control" id="id_pegawai" value="{{$gt->id_pegawai}}" aria-describedby="emailHelp" placeholder="">
+    @endforeach
+    </div>
+  </div>
+
      <div class="form-group">
           <label  for="exampleInputEmail1">Santri</label>
       <select name="id_santri" class="form-control">
