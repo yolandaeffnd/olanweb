@@ -7,6 +7,8 @@
                 <button data-toggle="modal" data-target="#staticBackdrop" class="btn btn pull-right btn-success"><i class="fa fa-plus"></i>  Tambah Data </a></button>
               </div>
   <div class="card-body">
+  <div class="table-wrapper" >
+  <div class="md-card-content" style="overflow-x: auto;">
    <table class="table table-striped table-bordered" id="datatables">  
             
                     <thead>
@@ -29,8 +31,7 @@
 
 
                       <tbody>
-                        <?php $i=0;
-                        $datas = \App\Agenda::all(); ?>
+                        <?php $i=0; ?>
                         @foreach($datas as $data)
                         <tr>
                           <td><b>{{++$i}}.</b></td>
@@ -57,6 +58,8 @@
                     </table>
                   </div>
                 </div>
+</div>
+</div>
 
 <!-- ===================================================================================================================================================================TAMBAH ISI DATA TEMPAT=========================================================
 

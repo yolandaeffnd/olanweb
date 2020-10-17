@@ -6,6 +6,7 @@ use App\HalaqahSantri;
 use App\Riwayat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Auth;
 class HalaqahSantriController extends Controller
 {
     /**
@@ -21,6 +22,10 @@ class HalaqahSantriController extends Controller
     
     public function index()
     {
+        if(Auth::user()->level != 'Admin'&&'Wakbid Kesiswaan') {
+
+            return view('/blok');
+        }
          $datas= \App\HalaqahSantri::all();
         return view('halaqahsantri.index', ['datas' => $datas]);
     }
@@ -32,6 +37,10 @@ class HalaqahSantriController extends Controller
      */
     public function create()
     {
+        if(Auth::user()->level != 'Admin'&&'Wakbid Kesiswaan') {
+
+            return view('/blok');
+        }
        
         $santri= Santri::orderBy('id_santri','asc')->get();
         $halaqah= Halaqah::orderBy('id_halaqah','asc')->get();
@@ -70,6 +79,10 @@ class HalaqahSantriController extends Controller
      */
     public function edit($id)
     {
+        if(Auth::user()->level != 'Admin'&&'Wakbid Kesiswaan') {
+
+            return view('/blok');
+        }
          $data = \App\HalaqahSantri::find($id);
         return view('halaqahsantri/edit', compact('data'));
     }

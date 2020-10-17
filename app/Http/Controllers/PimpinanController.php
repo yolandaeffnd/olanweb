@@ -105,6 +105,11 @@ class PimpinanController extends Controller
          return view('beranda',['kategori'=>$kategori,'data'=>$data,'santri'=>$santri,'guru'=>$guru,'tempat'=>$tempat,'lk'=>$lk,'wa'=>$wa,'agenda'=>$agenda]);
     }
 
+    public function blok()
+    {
+        return view('blok');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

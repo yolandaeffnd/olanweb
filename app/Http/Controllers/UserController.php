@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Support\Facades\Hash;
 use Auth;
 use Carbon\Carbon;
+use Validator;
 
 class UserController extends Controller
 {
@@ -23,6 +24,10 @@ class UserController extends Controller
 
     public function index()
     {
+        if(Auth::user()->level != 'Admin') {
+
+            return view('/blok');
+        }
         $datas= \App\User::all();
         return view('user.index', ['datas' => $datas]);
     }
@@ -87,13 +92,21 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //Change Password
+       
+        // Change Password
       if(Auth::user()->level!='Admin'){
             $user_data = Auth::user();
          }
          else
          {
             $user_data = User::findOrFail($id);
+            $user_data->level=$request->input('level');
+            
+            if($request->input('password')) {
+
+                $user_data->password= bcrypt(($request->input('password')));
+            
+            }
          }
 
          if($request->file('gambar'))
@@ -107,17 +120,6 @@ class UserController extends Controller
         }
 
         $user_data->nama = $request->input('nama');
-
-        if(Auth::user()->level=='Admin'){
-           $user_data->level=$request->input('level');
-        }
-
-
-        if($request->input('password')) {
-            $user_data->password= bcrypt(($request->input('password')));
-        
-        }
-        
         $user_data->update();
 
         if(Auth::user()->level=='Admin'){
@@ -125,7 +127,46 @@ class UserController extends Controller
         }else{
             return redirect()->route('beranda');
         }
+
+    
+
     }
+
+
+    public function updatePassword(Request $request){
+        return view('user.sandi');
+    }
+
+    public function sandiPassword(Request $request){
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|min:8'
+            
+        ]);
+        if (!(Hash::check($request->get('old_password'), Auth::user()->password))) {
+            // The passwords not matches
+            //return redirect()->back()->with("error","Your current password does not matches with the password you provided. Please try again.");
+            return response()->json(['errors' => ['current'=> ['Current password does not match']]], 422);
+        }
+        //uncomment this if you need to validate that the new password is same as old one
+    
+        if(strcmp($request->get('old_password'), $request->get('new_password')) == 0){
+            //Current password and new password are same
+            //return redirect()->back()->with("error","New Password cannot be same as your current password. Please choose a different password.");
+            return response()->json(['errors' => ['current'=> ['New Password cannot be same as your current password']]], 422);
+        }
+        
+        //Change Password
+        $user = Auth::user();
+        $user->password = Hash::make($request->get('new_password'));
+        $user->save();
+        return redirect()->route('beranda');
+    
+    
+
+
+    }
+
 
     /**
      * Remove the specified resource from storage.

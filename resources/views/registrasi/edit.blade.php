@@ -75,6 +75,24 @@ $(document).ready(function(){
           <!-- <label for="exampleInputEmail1">NIS</label> -->
             <input name="id_santri" type="hidden" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$data->id_santri}}">
     </div>
+    <div class="form-group">
+          <label  for="exampleInputEmail1">Kode Jadwal</label>
+   
+
+      <select name="id_hari" class="form-control">
+        <option value="">Pilih Jadwal</option>
+       <?php $jadwal = \App\Jadwal::all();  ?>
+        @foreach($jadwal as $jadwal)
+         <option 
+                  value="{{$jadwal->id_jadwal}}"
+                  @if ($jadwal->id_jadwal === $data->id_jadwal)
+                  selected
+                  @endif
+                  >{{$jadwal->kode_jadwal}}
+                </option>
+        @endforeach
+      </select>
+    </div>
   
   
    <div class="form-group row">

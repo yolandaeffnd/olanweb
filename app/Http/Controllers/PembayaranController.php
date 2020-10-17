@@ -12,6 +12,7 @@ use PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class PembayaranController extends Controller
 {
@@ -27,6 +28,10 @@ class PembayaranController extends Controller
     
     public function index()
     {
+        if(Auth::user()->level != 'Bendahara') {
+
+            return view('/blok');
+        }
         $datas= \App\Pembayaran::all();
         return view('pembayaran.index', ['datas' => $datas]);
     }
@@ -38,6 +43,10 @@ class PembayaranController extends Controller
      */
     public function create()
     {
+        if(Auth::user()->level != 'Bendahara') {
+
+            return view('/blok');
+        }
          $santri= Santri::orderBy('id_santri','asc')->get();
           $periode2= Periode2::orderBy('kode_periode','asc')->get();  
           $periode= Periode::orderBy('id_bulan_periode','asc')->get();  

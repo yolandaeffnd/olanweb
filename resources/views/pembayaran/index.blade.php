@@ -35,8 +35,7 @@
 
 
                       <tbody>
-                        <?php $i=0;
-                        $datas = \App\Pembayaran::all(); ?>
+                        <?php $i=0; ?>
                         @foreach($datas as $data)
                         <tr>
                           <td><b>{{++$i}}.</b></td>

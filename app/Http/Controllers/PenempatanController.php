@@ -11,6 +11,7 @@ use App\Riwayat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Carbon;
+use Auth;
 class PenempatanController extends Controller
 {
     /**
@@ -25,15 +26,11 @@ class PenempatanController extends Controller
     
     public function index()
     {
-       $datas= \App\Penempatan::all();
+        if(Auth::user()->level != 'Wakbid Kesiswaan') {
 
-       // $b = \Carbon\Carbon::today();
-
-       // $datas = DB::table('h_penempatan_santri')->where('tgl_mulai',$b)->update(['status'=>'terlaksana']);
-
-
-     
-      
+            return view('/blok');
+        }
+       $datas= Penempatan::orderBy('id_penempatan','desc')->get();
         return view('penempatan2.index', ['datas' => $datas]);
     }
 
@@ -44,6 +41,10 @@ class PenempatanController extends Controller
      */
     public function create()
     {
+        if(Auth::user()->level != 'Wakbid Kesiswaan') {
+
+            return view('/blok');
+        }
         $halaqah= Haalqah::orderBy('kode_halaqah','asc')->get();
         $pperiode= Hari::orderBy('kode_pembelajaran_periode','asc')->get();
         $data = \App\Penempatan::all();    
@@ -96,6 +97,10 @@ class PenempatanController extends Controller
      */
     public function edit($id)
     {
+        if(Auth::user()->level != 'Wakbid Kesiswaan') {
+
+            return view('/blok');
+        }
         $data = \App\Penempatan::find($id);
         return view('penempatan2/edit', compact('data'));
     }

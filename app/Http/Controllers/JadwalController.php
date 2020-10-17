@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Jadwal;
 use App\Hari;
 use App\Shift;
+use Auth;
 
 
 class JadwalController extends Controller
@@ -22,6 +23,10 @@ class JadwalController extends Controller
     
     public function index()
     {
+        if(Auth::user()->level != 'Admin') {
+
+            return view('/blok');
+        }
          $datas= \App\Jadwal::all();
         return view('jadwal.index', ['datas' => $datas]);
     }
@@ -33,6 +38,10 @@ class JadwalController extends Controller
      */
     public function create()
     {
+        if(Auth::user()->level != 'Admin') {
+
+            return view('/blok');
+        }
         $shift= Shift::orderBy('kode_shift','asc')->get();
         $hari= Hari::orderBy('nama_hari','asc')->get();
         $data = \App\Jadwal::all();    

@@ -11,6 +11,8 @@
 
 
 <div class="card-body">
+<div class="table-wrapper" >
+  <div class="md-card-content" style="overflow-x: auto;">
      <table class="table table-striped table-bordered" id="datatables">    
             
                     <thead>
@@ -44,8 +46,7 @@
 
 
                       <tbody>
-                        <?php $i=0;
-                        $datas = \App\Registrasi::all(); ?>
+                        <?php $i=0; ?>
                         @foreach($datas as $data)
                         <tr>
                           <td><b>{{++$i}}.</b></td>
@@ -107,6 +108,7 @@
                     </table>
                   </div>
                 </div>
-
+</div>
+</div>
 
 @stop 

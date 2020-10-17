@@ -9,13 +9,15 @@
               </div>
               @endif
   <div class="card-body">
+  <div class="table-wrapper" >
+  <div class="md-card-content" style="overflow-x: auto;">
     <table class="table table-striped  table-bordered" id="datatables">    
             
                     <thead>
                     <tr>
                     <th>NO</th>      
                       <th>NAMA GURU</th>
-                      <th>TANGGAL LAHIR</th>
+                      <th>NIP</th>
                       <th>JENIS KELAMIN</th>
                       <th>ALAMAT</th>
                       <th>JABATAN</th>
@@ -33,15 +35,14 @@
 
 
                       <tbody>
-                        <?php $i=0;
-                        $datas = \App\Guru::all(); ?>
+                        <?php $i=0; ?>
                         @foreach($datas as $data)
                         <tr>
                           <td><b>{{++$i}}.</b></td>
                           <td>{{$data->nama_guru}}</td>
                        <!--    <td>{{$data->panggilan}}</td> -->
     
-                          <td>{{$data->tgl_lahir}}</td>
+                          <td>{{$data->nip}}</td>
                           <td>{{$data->jk}}</td>
                           <td>{{$data->alamat}}</td>
                         <!--   <td>{{$data->pendidikan}}</td>
@@ -76,6 +77,9 @@
                     </table>
                   </div>
                 </div>
+</div>
+</div>
+
 
 
 @endsection

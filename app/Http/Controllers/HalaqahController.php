@@ -7,6 +7,7 @@ use App\Tempat;
 use App\Jadwal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class HalaqahController extends Controller
 {
@@ -23,6 +24,10 @@ class HalaqahController extends Controller
     
     public function index()
     {
+        if(Auth::user()->level != 'Admin'&&'Wakbid Kesiswaan') {
+
+            return view('/blok');
+        }
          $datas= \App\Halaqah::all();
         return view('halaqah2.index', ['datas' => $datas]);
     }
@@ -34,6 +39,10 @@ class HalaqahController extends Controller
      */
     public function create()
     {
+        if(Auth::user()->level != 'Admin'&&'Wakbid Kesiswaan') {
+
+            return view('/blok');
+        }
         $guru= Guru::orderBy('id_pegawai','asc')->get();
         $tempat= Tempat::orderBy('id_tempat','asc')->get();
         $jadwal= Jadwal::orderBy('id_jadwal','asc')->get();
@@ -86,6 +95,10 @@ class HalaqahController extends Controller
      */
     public function edit($id)
     {
+        if(Auth::user()->level != 'Admin'&&'Wakbid Kesiswaan') {
+
+            return view('/blok');
+        }
           $data = \App\Halaqah::find($id);
         return view('halaqah/edit', compact('data'));
 

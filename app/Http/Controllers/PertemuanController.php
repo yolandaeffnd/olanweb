@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Pertemuan;
 use App\Halaqah;
 use App\PembelajaranPeriode;
+use App\Guru;
+use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -22,7 +24,23 @@ class PertemuanController extends Controller
     
     public function index()
     {
-          $datas= \App\Pertemuan::all();
+        if(Auth::user()->level == 'Guru')
+        {
+          $nip = Auth::user()->nip;
+          $guru = \App\Guru::select('id_pegawai')->where('nip',$nip)->first();
+          $getGuru= $guru->id_pegawai;
+          $datas= \App\Halaqah::leftJoin('pertemuan','h_halaqah.id_halaqah','=','pertemuan.id_halaqah')
+                 ->select('pertemuan.*','h_halaqah.id_pegawai')
+                 ->where('h_halaqah.id_pegawai',$getGuru)
+                 ->orderBy('id_pertemuan','desc')->get();
+
+           
+          
+        }else{
+            $datas= Pertemuan::orderBy('id_pertemuan','desc')->get();
+      
+        }
+         
         return view('pertemuan.index', ['datas' => $datas]);
     }
 

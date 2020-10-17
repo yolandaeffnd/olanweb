@@ -6,6 +6,8 @@ use App\Guru;
 use Illuminate\Http\Request;
 use DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
+use Auth;
 
 class GuruController extends Controller
 {
@@ -21,6 +23,10 @@ class GuruController extends Controller
     
     public function index()
     {
+        if(Auth::user()->level != 'Admin') {
+
+            return view('/blok');
+        }
         $datas= Guru::orderBy('id_pegawai','asc')->get();
         return view('guru.index', compact('datas'));
     }
@@ -32,6 +38,10 @@ class GuruController extends Controller
      */
     public function create()
     {
+        if(Auth::user()->level != 'Admin') {
+
+            return view('/blok');
+        }
         return view('guru.create');
     }
 
@@ -43,6 +53,14 @@ class GuruController extends Controller
      */
     public function store(Request $request)
     {
+       
+        $request->validate([
+            'nip' => 'required|string',
+            'nama_guru' => 'required',
+            'jk' => 'required'    
+            
+        ]);
+
         if($request->file('gambar') == '') {
             $gambar = "";
         } else {
@@ -94,6 +112,10 @@ class GuruController extends Controller
      */
     public function edit($id)
     {
+        if(Auth::user()->level != 'Admin') {
+
+            return view('/blok');
+        }
          $data = \App\Guru::find($id);
         return view('guru/edit', compact('data'));
 

@@ -7,6 +7,8 @@ use App\Santri;
 use App\Periode2;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Auth;
 
 class BeasiswaController extends Controller
 {
@@ -15,14 +17,21 @@ class BeasiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
 
     public function __construct()
     {
         $this->middleware('auth');
     }
+
+
     
     public function index()
     {
+        if(Auth::user()->level != 'Admin'&&'Wakbid Kesiswaan') {
+
+            return view('/blok');
+        }
         $datas= \App\Beasiswa::all();
 
        
@@ -37,6 +46,10 @@ class BeasiswaController extends Controller
      */
     public function create()
     {
+        if(Auth::user()->level != 'Wakbid Kesiswaan') {
+
+            return view('/blok');
+        }
          $santri= Santri::orderBy('id_santri','asc')->get();
           $periode2= Periode2::orderBy('kode_periode','asc')->get();  
              $data = \App\Beasiswa::all(); 
@@ -51,6 +64,12 @@ class BeasiswaController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'id_santri' => 'required|uniqe'
+              
+            
+        ]);
+
          $data = beasiswa::create([
     
         'id_santri' => $request->get('id_santri'),
@@ -83,6 +102,10 @@ class BeasiswaController extends Controller
      */
     public function edit($id)
     {
+        if(Auth::user()->level != 'Wakbid Kesiswaan') {
+
+            return view('/blok');
+        }
            $data = \App\Beasiswa::find($id);
         return view('beasiswa/edit', compact('data'));
     }

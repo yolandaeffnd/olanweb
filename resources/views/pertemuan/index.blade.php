@@ -26,11 +26,11 @@
                                    
 
                    <!--    BAGIAN BODY TABEL -->
-
+                  <?php
+                      $i=0;
+                  ?>
 
                       <tbody>
-                        <?php $i=0;
-                        $datas = \App\Pertemuan::all(); ?>
                         @foreach($datas as $data)
                         <tr>
                           <td><b>{{++$i}}.</b></td>

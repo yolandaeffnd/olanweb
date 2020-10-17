@@ -15,15 +15,42 @@
       <form method="POST" action="">
         {{ csrf_field() }}
 
+        <?php 
+  if(Auth::user()->level == 'Guru')
+  {
+    $nip = Auth::user()->nip;
+    $guru = \App\Guru::select('id_pegawai')->where('nip',$nip)->first();
 
+    $getGuru= $guru->id_pegawai;
+
+    $halaqah = \App\Halaqah::where('id_pegawai',$getGuru)->get();
+    $result = \App\Halaqah::select('id_halaqah')->where('id_pegawai',$getGuru)->first();
+    $gtgr =$result->id_halaqah;
+
+    foreach($halaqah as $hq)
+    {
+      $getHalaqah=$hq->id_halaqah; 
+    }
+    $santri2 = \App\Santri::
+          leftjoin('h_halaqah_santri','santri.id_santri','=','h_halaqah_santri.id_santri')
+          ->select('santri.*','h_halaqah_santri.id_halaqah')
+          ->where('h_halaqah_santri.id_halaqah',$gtgr)->get();
+  }else{
+    $santri2 = \App\Santri::all();
+    $halaqah = \App\Halaqah::all(); 
+
+  }
+    
+
+          
+     ?>
 
   <div class="row">
      <div class="form-group col-md-6">
           <label for="exampleInputEmail1">Santri</label>
             <select name="id_santri" class="form-control" id="id_santri">
         <option value="">Pilih NIS</option>
-       <?php $santri = \App\Santri::all();  ?>
-        @foreach($santri as $data)
+        @foreach($santri2 as $data)
         <option value="{{$data->id_santri}}">{{$data->nis}} </option>
         @endforeach
       </select>
@@ -32,7 +59,7 @@
           <label for="exampleInputEmail1">Halaqah Santri</label>
             <select name="id_halaqah" class="form-control" id="id_halaqah">
         <option value="">Pilih Halaqah</option>
-       <?php $halaqah = \App\Halaqah::all();  ?>
+     
         @foreach($halaqah as $data)
         <option value="{{$data->id_halaqah}}">{{$data->kode_halaqah}} </option>
         @endforeach
@@ -64,6 +91,8 @@
  <div class="col-md-12 grid-margin">
       <div class="card">
         <div class="card-body">
+        <div class="table-wrapper" >
+  <div class="md-card-content" style="overflow-x: auto;">
     <table class="table table-striped table-bordered" id="datatables">    
             
                      <thead>
@@ -113,6 +142,8 @@
                     </table> 
   </div>
   </div>
+</div>
+</div>
 </div>
 </div>
 @stop 

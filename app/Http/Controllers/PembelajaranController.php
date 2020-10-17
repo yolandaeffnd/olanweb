@@ -9,6 +9,8 @@ use App\Guru;
 use App\Santri;
 use App\Juz;
 use App\Surat;
+use Auth;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -27,7 +29,18 @@ class PembelajaranController extends Controller
 
     public function index()
     {
-        $datas= \App\Pembelajaran::all();
+       
+        if(Auth::user()->level == 'Guru')
+        {
+          $nip = Auth::user()->nip;
+          $guru = \App\Guru::select('id_pegawai')->where('nip',$nip)->first();
+          $getGuru= $guru->id_pegawai;
+          $datas= \App\Pembelajaran::where('id_pegawai',$getGuru)->orderBy('id_pembelajaran','desc')->get();
+          
+        }else{
+            $datas= Pembelajaran::orderBy('id_pembelajaran','desc')->get();
+        }
+      
         return view('pembelajaran.index', ['datas' => $datas]);
     }
 
@@ -61,7 +74,7 @@ class PembelajaranController extends Controller
         'id_pertemuan' => $request->get('id_pertemuan'),
         'id_pegawai' => $request->get('id_pegawai'),
         'id_santri' => $request->get('id_santri'),
-        'tgl' => $request->get('tgl'),
+        'tgl' => Carbon::now()->format('Y-m-d'),
         'kehadiran' => $request->get('kehadiran'),
         'id_juz_mulai' => $request->get('id_juz_mulai'),
         'surat_mulai' => $request->get('surat_mulai'),

@@ -355,8 +355,7 @@ class LaporanController extends Controller
             $result = DB::table('h_halaqah')->select('kode_halaqah')->where('id_halaqah',$halaqah)->first();
             $kelas = $result->kode_halaqah;
 
-            $datas = DB::table('h_pembelajaran')
-                    ->join('pertemuan', 'h_pembelajaran.id_pertemuan', '=', 'pertemuan.id_pertemuan')
+            $datas = Pembelajaran::join('pertemuan', 'h_pembelajaran.id_pertemuan', '=', 'pertemuan.id_pertemuan')
                     ->select('h_pembelajaran.*','pertemuan.id_halaqah')
                     ->where('pertemuan.id_halaqah',$halaqah)
                     ->where('h_pembelajaran.id_santri',$santri)->get(); 

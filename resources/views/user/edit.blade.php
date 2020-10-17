@@ -15,11 +15,6 @@
 
                     <!--=====================================================================================================================================TAMBAH DATA SANTRI===================-->
 
-
-    
-
-
-
   <form method="POST" action="{{ route('user.update', $data) }}" enctype="multipart/form-data">
         {{ csrf_field() }}
         {{ method_field('put') }}
@@ -51,11 +46,8 @@
                         <option value="Guru" {{$data->level === "Guru" ? "selected" : ""}}>Guru</option>
                     </select>
     </div>
-    @endif
-    
-
   <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+                            <label for="password" class="col-md-4 control-label">Sandi Baru</label>
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" onkeyup='check();' name="password">
                                 @if ($errors->has('password'))
@@ -66,14 +58,16 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+                            <label for="password-confirm" class="col-md-4 control-label">Konfirmasi Sandi</label>
                             <div class="col-md-6">
                                 <input id="confirm_password" type="password" onkeyup="check()" class="form-control" name="password_confirmation">
                                 <span id='message'></span>
                             </div>
                         </div>
+                        @endif
 
     <div class="modal-footer">
+      <a href="{{url('/beranda')}}"><button type="submit" class="btn btn-secondary">Cancel</button></a>
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 

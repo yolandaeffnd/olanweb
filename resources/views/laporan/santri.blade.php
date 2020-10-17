@@ -71,6 +71,8 @@
  <div class="col-md-12 grid-margin">
       <div class="card">
         <div class="card-body">
+        <div class="table-wrapper" >
+  <div class="md-card-content" style="overflow-x: auto;">
     <table class="table table-striped table-bordered" id="datatables">    
             
                     <thead>
@@ -121,6 +123,8 @@
                     </table>
   </div>
   </div>
+</div>
+</div>
 </div>
 </div>
 @stop 

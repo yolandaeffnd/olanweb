@@ -75,7 +75,9 @@
                     <label for="exampleInputEmail1">Nis</label>
                     <select name="id_santri" class="form-control">
                         <option value="">Pilih Nis</option>
-                        <?php $santri = \App\Santri::all();  ?>
+                        <?php $santri = \App\Santri::all();  
+                        
+                        ?>
                         @foreach($santri as $data)
                         <option value="{{$data->id_santri}}">{{$data->nis}} </option>
                         @endforeach

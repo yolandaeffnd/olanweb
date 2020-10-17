@@ -8,7 +8,8 @@
                 <a href="{{route('santri.create')}}" class="btn ml-lg-auto download-button btn-success btn-sm my-1 my-sm-0">Tambah Data</a>
 </div>
 <div class="card-body">
-
+<div class="table-wrapper" >
+  <div class="md-card-content" style="overflow-x: auto;">
           <table class="table table-striped table-bordered" id="datatables">    
 
                      <!--  BAGIAN KEPALA TABEL -->
@@ -81,6 +82,8 @@
                     </table>
                   </div>
                 </div>
+</div>
+</div>
 
 
 @stop

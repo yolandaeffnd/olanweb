@@ -9,7 +9,9 @@
                   @endif
                 </div>
 <div class="card-body">
-    <table class="table table-striped table-bordered" id="datatables">    
+<div class="table-wrapper" >
+  <div class="md-card-content" style="overflow-x: auto;">
+    <table class="table table-striped table-bordered display nowrap" style="width:100%" id="datatables">    
 
             
                     <thead>
@@ -77,6 +79,9 @@
                     </table>
                   </div>
                 </div>
+</div>
+</div>
+               
 
 
 @endsection

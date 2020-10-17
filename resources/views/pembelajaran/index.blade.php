@@ -3,12 +3,14 @@
 <div class="card">
                   <div class="card-header">
                     <h4 class="card-title">DATA PEMBELAJARAN</h4>
-          
+                    @if(Auth::user()->level != 'Admin' && Auth::user()->level != 'Wakbid Kesiswaan' && Auth::user()->level != 'Bendahara' && Auth::user()->level!='Wakbid Kurikulum'  && Auth::user()->level!='Pimpinan' )
                          <a href="{{route('pembelajaran.create')}}" class="btn ml-lg-auto download-button btn-success btn-sm my-1 my-sm-0">Tambah Data</a>
                        </div>
-
+                    @endif
 
 <div class="card-body">
+<div class="table-wrapper" >
+  <div class="md-card-content" style="overflow-x: auto;">
      <table class="table table-striped table-bordered" id="datatables">  
 
             
@@ -88,6 +90,8 @@
                     </table>
                   </div>
                 </div>
+</div>
+</div>
 
 <!-- ===================================================================================================================================================================TAMBAH ISI DATA TEMPAT=========================================================
 

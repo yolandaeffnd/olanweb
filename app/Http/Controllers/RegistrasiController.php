@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Redirect;
 use Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class RegistrasiController extends Controller
 {
@@ -27,7 +28,11 @@ class RegistrasiController extends Controller
     
     public function index()
     {
-       $datas= Registrasi::orderBy('id_registrasi','asc')->get();
+        if(Auth::user()->level != 'Admin') {
+
+            return view('/blok');
+        }
+       $datas= Registrasi::orderBy('id_registrasi','desc')->get();
         return view('registrasi.index', compact('datas'));
     }
 
@@ -38,6 +43,10 @@ class RegistrasiController extends Controller
      */
     public function create()
     {
+        if(Auth::user()->level != 'Admin') {
+
+            return view('/blok');
+        }
         $periode2= Periode2::orderBy('kode_periode','asc')->get();
         $santri= Santri::orderBy('id_santri','asc')->get();
         $jadwal= Jadwal::orderBy('id_jadwal','asc')->get();
@@ -53,6 +62,12 @@ class RegistrasiController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'id_santri' => 'required|uniqe',
+            'id_jadwal' => 'required' 
+            
+        ]);
+        
          if($request->input('tipe')=='Baru'){
 
              $santri = Santri::create([
@@ -212,7 +227,7 @@ class RegistrasiController extends Controller
      */
     public function edit($id)
     {
-     $data = \App\Registrasi::find($id);
+      $data = \App\Registrasi::find($id);
         return view('registrasi/edit', compact('data'));    
     }
 
@@ -225,13 +240,18 @@ class RegistrasiController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'id_santri' => 'required|uniqe',
+            'id_jadwal' => 'required' 
+            
+        ]);
         $data = \App\Registrasi::find($id);
 
         // $data->tipe = $request->input('tipe');
         // $data->id_periode = $request->input('id_periode');
         //   $data->tgl = $request->input('tgl');
          $data->id_santri = $request->input('id_santri');
-          // $data->id_jadwal = $request->input('id_jadwal');
+          $data->id_jadwal = $request->input('id_jadwal');
            $data->status = $request->input('status');
            $data->status_pembayaran = $request->input('status_pembayaran');
             $data->jumlah_pembayaran = $request->input('jumlah_pembayaran');
@@ -239,6 +259,18 @@ class RegistrasiController extends Controller
 
    
         $data->update();
+        
+
+        $allpenempatan = Penempatan::where('id_santri',$data->id_santri)->get();
+        foreach($allpenempatan as $pt){
+            $detail5=Penempatan::find($pt->id_penempatan);
+                $detail5->where('id_santri',$data->id_santri)
+                        ->update([
+                            'id_jadwal'=>$data->id_jadwal,
+                        ]);
+                $detail5->save();
+        }
+
 
         $alldetail3= Riwayat::where('id_santri',$data->id_santri)->get();
              foreach($alldetail3 as $d){
@@ -278,7 +310,7 @@ class RegistrasiController extends Controller
     public function destroy($id)
     {
          $data = \App\Registrasi::find($id);
-        $data->delete();
+         $data->delete();
          return redirect()->route('registrasi.index')->with('success', 'Data berhasil dihapus!');
     }
 }

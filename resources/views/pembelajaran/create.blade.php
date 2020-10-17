@@ -57,16 +57,7 @@ $(document).ready(function(){
 
  <form method="POST" action="{{route('pembelajaran.store')}}">
           @csrf
-      <div class="form-group">
-          <label  for="exampleInputEmail1">Pertemuan</label>
-      <select name="id_pertemuan" id="id_pertemuan" class="form-control" >
-        <option value="">Pilih Pertemuan</option>
-       <?php $pertemuan = \App\Pertemuan::all();  ?>
-        @foreach($pertemuan as $data)
-        <option value="{{$data->id_pertemuan}}">{{$data->id_pertemuan}} </option>
-        @endforeach
-      </select>
-    </div>
+    
 
   <?php 
     $nip = Auth::user()->nip;
@@ -83,8 +74,23 @@ $(document).ready(function(){
           ->select('santri.*','h_halaqah_santri.id_halaqah')
           ->where('h_halaqah_santri.id_halaqah',$getHalaqah)->get();
 
+          $pertemuan= \App\Halaqah::leftJoin('pertemuan','h_halaqah.id_halaqah','=','pertemuan.id_halaqah')
+          ->select('pertemuan.*','h_halaqah.id_pegawai')
+          ->where('h_halaqah.id_pegawai',$getGuru)
+          ->get();
+
           
      ?>
+
+<div class="form-group">
+          <label  for="exampleInputEmail1">Pertemuan</label>
+      <select name="id_pertemuan" id="id_pertemuan" class="form-control" >
+      <option value="">Pilih Pertemuan</option>
+        @foreach($pertemuan as $data)
+        <option value="{{$data->id_pertemuan}}">{{$data->id_pertemuan}} </option>
+        @endforeach
+      </select>
+    </div>
     <!-- <div class="form-group">
           <label  for="exampleInputEmail1">Guru</label>
       <select name="id_pegawai" class="form-control">
@@ -96,13 +102,13 @@ $(document).ready(function(){
       </select>
     </div> -->
 
+    
     <div class="form-group">
-    <div class="form-group">
-    @foreach($guru as $gt)
-          <input name="id_pegawai" type="text" class="form-control" id="id_pegawai" value="{{$gt->id_pegawai}}" aria-describedby="emailHelp" placeholder="">
-    @endforeach
+    
+          <input name="id_pegawai" type="hidden" class="form-control" id="id_pegawai" value="{{$getGuru}}" aria-describedby="emailHelp" placeholder="">
+   
     </div>
-  </div>
+  
 
      <div class="form-group">
           <label  for="exampleInputEmail1">Santri</label>
@@ -114,10 +120,10 @@ $(document).ready(function(){
       </select>
     </div>
 
-      <div class="form-group">
+      <!-- <div class="form-group">
           <label for="exampleInputEmail1">Tanggal</label>
           <input id="tgl_pertemuan" type="date" class="form-control" name="tgl" value="{{ date('Y-m-d', strtotime(Carbon\Carbon::today()->toDateString())) }}" required>
-    </div>
+    </div> -->
  
 
 

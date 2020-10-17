@@ -33,8 +33,7 @@
 
 
                       <tbody>
-                        <?php $i=0;
-                        $datas = \App\Penempatan::all(); ?>
+                        <?php $i=0; ?>
                         @foreach($datas as $data)
                         <tr>
                           <td><b>{{++$i}}.</b></td>

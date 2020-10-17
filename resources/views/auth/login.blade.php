@@ -15,7 +15,7 @@
                 <form class="pt-3" method="POST" action="{{ route('login') }}">
                 @csrf
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Username</label>
+                    <label for="exampleInputEmail1">Nip</label>
                     <input type="text" class="form-control @error('nip') is-invalid @enderror form-control-lg" id="nip" name="nip" placeholder="Nip Guru" value="{{ old('nip') }}" required autocomplete="nip" autofocus>
                     @error('nip')
                         <span class="invalid-feedback" role="alert">
@@ -55,8 +55,8 @@
                     <!-- <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">LOGIN</a> -->
                     <button type="submit" class="btn btn-block btn-success btn-lg font-weight-medium auth-form-btn">LOGIN</button>
                   </br>
-                    <p>Belum Punya Akun? Lakukan <a href="{{ route('register') }}"> {{ __('REGISTER') }}</a></p>
-                  
+                  <center><p>Belum Punya Akun? Lakukan <a href="{{ route('register') }}"> {{ __('REGISTER') }}</a></p>
+                  </center>  
                   </div>
 
                  

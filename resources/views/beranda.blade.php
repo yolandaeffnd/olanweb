@@ -18,7 +18,7 @@
                       <button type="button" class="btn px-0"><i class="icon-user mr-2"></i>Guru {!!json_encode($guru)!!}</button>
                     </div>
                     <div class="col-sm-6 col-md-4 p-3 text-center btn-wrapper">
-                      <button type="button" class="btn px-0"><i class="icon-home mr-2"></i>Gedung {!!json_encode($tempat)!!}</button>
+                      <button type="button" class="btn px-0"><i class="icon-home mr-2"></i>Rumah {!!json_encode($tempat)!!}</button>
                     </div>
                    
                   </div>
